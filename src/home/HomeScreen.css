@@ -1,0 +1,16 @@
+.home-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.books-container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.invitations-container {
+    display: flex;
+    flex-direction: column;
+}

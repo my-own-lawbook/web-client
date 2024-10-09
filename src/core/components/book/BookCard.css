@@ -1,0 +1,53 @@
+.book-card-ripple {
+    display: flex;
+    flex-direction: column;
+
+    width: 230px;
+
+    border-radius: 32px 32px 4px 4px;
+}
+
+.book-card {
+    border-radius: 32px 32px 4px 4px;
+
+    overflow: hidden;
+}
+
+.book-card > .key-container {
+    display: grid;
+    align-content: center;
+
+    height: 130px;
+}
+
+.key-container > .key-display {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-container {
+    padding: 8px;
+}
+
+.info-container > .info-title {
+    font-size: 15px;
+    font-weight: bold;
+
+    text-align: start;
+}
+
+.info-container > .info-description {
+    font-weight: 300;
+
+    text-align: start;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

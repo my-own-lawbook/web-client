@@ -1,0 +1,30 @@
+.tabs > .tab {
+    display: grid;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    padding: 12px 16px;
+}
+
+.tab > p {
+    font-weight: 400;
+}
+
+.tab-selected > p {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.tab-disabled > p {
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--mui-palette-grey-600);
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border-radius: 12px;
+}

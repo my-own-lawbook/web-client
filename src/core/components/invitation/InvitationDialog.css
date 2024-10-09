@@ -1,0 +1,20 @@
+.invitation-dialog-message-wrapper {
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-left: 12px;
+
+    /*noinspection CssUnresolvedCustomProperty*/
+    border-left: var(--mui-palette-grey-500) 2px solid;
+}
+
+.invitation-dialog-message {
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--mui-palette-grey-700);
+}
+
+.invitation-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}

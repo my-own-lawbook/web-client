@@ -1,0 +1,10 @@
+.auth-screen-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    background: linear-gradient(150deg, #ffffff, #f6faff, #edf5ff, #e4efff, #dbeaff, #d1e5ff, #c8e0ff, #bedbff, #b4d6ff, #aad1ff, #a0ccff, #95c7ff);
+}

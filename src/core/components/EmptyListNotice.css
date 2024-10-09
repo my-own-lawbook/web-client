@@ -1,0 +1,7 @@
+/*noinspection CssUnresolvedCustomProperty*/
+.clickable-text {
+    cursor: pointer;
+
+    color: var(--mui-palette-grey-600);
+    text-decoration-color: var(--mui-palette-grey-600);
+}

@@ -1,0 +1,15 @@
+.page-wrapper {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.page-wrapper > .page-wrapper-content {
+    height: 100%;
+
+    padding: 16px;
+
+    overflow: scroll;
+}

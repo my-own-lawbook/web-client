@@ -1,0 +1,17 @@
+.index-name-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+.index-name-container :nth-child(1) {
+    flex: 1;
+}
+
+.index-name-container :nth-child(2) {
+    flex: 2;
+}

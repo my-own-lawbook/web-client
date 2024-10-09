@@ -1,0 +1,24 @@
+.entry-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.create-entry-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+    margin-top: 12px;
+}
+
+.collapse-icon-button {
+    transform: rotate(0deg);
+
+    transition: transform 500ms;
+}
+
+.collapsed {
+    transform: rotate(180deg);
+}

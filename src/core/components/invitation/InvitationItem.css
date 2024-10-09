@@ -1,0 +1,9 @@
+.invitation-item {
+    display: inline-block;
+}
+
+.invitation-item-ripple {
+    border-radius: 8px;
+
+    padding: 4px
+}
