@@ -99,7 +99,7 @@ export default function MOLDataGrid<T extends HasId>(props: Readonly<MOLDataGrid
         <Box className="data-grid">
             <MOLDataGridRow
             >
-                {props.headerNodes.map((headerNode, index) => <MOLDataGridSection children={headerNode.node}
+                {props.headerNodes.map(headerNode => <MOLDataGridSection children={headerNode.node}
                                                                                   key={headerNode.id}/>)}
             </MOLDataGridRow>
 
