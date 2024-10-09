@@ -19,7 +19,7 @@ const useApiCallPending = <T>(apiCall: () => Promise<ApiResult<T>>, doLoading?: 
     const updateData = () => {
         const fetch = async () => {
             setIsLoading(true)
-            if (doLoading == true) {
+            if (doLoading) {
                 return
             }
 

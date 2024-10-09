@@ -39,7 +39,7 @@ type UseLogin = {
     /**
      * The callback for the submit action
      */
-    onSubmit: () => void
+    onSubmit: () => Promise<void>
 
 }
 
@@ -103,8 +103,8 @@ const useLogin = (onSuccess: () => void): UseLogin => {
             password: password,
             isError: isError
         },
-        onSubmit: () => {
-            return onSubmit(email, password, clearAllErrors, setIsError, onSuccess)
+        async onSubmit() {
+            return await onSubmit(email, password, clearAllErrors, setIsError, onSuccess)
         }
     }
 }

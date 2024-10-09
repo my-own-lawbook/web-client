@@ -22,7 +22,7 @@ type BookCardProps = {
 /**
  * Component to display basic information about a law-book
  */
-export default function BookCard(props: BookCardProps) {
+export default function BookCard(props: Readonly<BookCardProps>) {
     return (
         <ButtonBase className="book-card-ripple" onClick={() => props.onClick(props.book)}>
             <Paper className="book-card">

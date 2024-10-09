@@ -50,7 +50,7 @@ type CreateSectionDialogContentProps = {
  * Component that allows a user to create or edit a section
  * @param props The props
  */
-export default function CreateSectionDialogContent(props: CreateSectionDialogContentProps) {
+export default function CreateSectionDialogContent(props: Readonly<CreateSectionDialogContentProps>) {
     const {t} = useTranslation()
 
     const {

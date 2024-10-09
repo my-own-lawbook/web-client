@@ -36,12 +36,12 @@ type MOLAppBarProps = {
  * @param props The props
  */
 function UserMenu(
-    props: {
+    props: Readonly<{
         menuState: ValuedMenuState<void>,
         onProfileClick: () => void,
         onLogoutClick: () => void,
         onLogoutAllClick: () => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -68,7 +68,7 @@ function UserMenu(
  * The MOLAppBar
  * @param props The props
  */
-export default function MOLAppBar(props: MOLAppBarProps) {
+export default function MOLAppBar(props: Readonly<MOLAppBarProps>) {
     const auth = useAuth()
 
     const menuState = useMenuState<void>()
@@ -99,10 +99,10 @@ export default function MOLAppBar(props: MOLAppBarProps) {
  * @constructor
  */
 function UserInformation(
-    props: {
+    props: Readonly<{
         email: string,
         onClick: (anchor: HTMLElement) => void
-    }
+    }>
 ) {
     const theme = useTheme()
     const {t} = useTranslation()
@@ -132,9 +132,9 @@ function UserInformation(
  * Renders an informative section that informs the user about the host that is currently being used
  */
 function HostInformation(
-    props: {
+    props: Readonly<{
         host: string
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -160,9 +160,9 @@ function HostInformation(
  * @constructor
  */
 function Logo(
-    props: {
+    props: Readonly<{
         onClick: () => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 

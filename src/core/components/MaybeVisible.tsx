@@ -35,7 +35,7 @@ type MaybeVisibleProps = {
  */
 export default function MaybeVisible(props: MaybeVisibleProps) {
     return (
-        props.isVisible == false ? null :
+        !props.isVisible ? null :
             <Box
                 sx={props.fullSize ? {height: '100%', width: '100%'} : {}}
             >

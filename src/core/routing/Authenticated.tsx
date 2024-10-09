@@ -11,12 +11,11 @@ import {useAuth} from "../useAuth.ts";
  *
  * @param props The children of the route
  */
-export default function Authenticated(props: PropsWithChildren) {
+export default function Authenticated(props: Readonly<PropsWithChildren>) {
     const auth = useAuth()
     const location = useLocation()
 
-    const authenticated = auth.authenticatedUser != null &&
-        auth.authenticatedUser.profile != null &&
+    const authenticated = auth.authenticatedUser?.profile &&
         auth.authenticatedUser.isEmailVerified
 
     if (authenticated == null) {

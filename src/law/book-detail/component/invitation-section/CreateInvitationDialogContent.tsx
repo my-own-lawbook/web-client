@@ -65,7 +65,7 @@ function CheckboxGuardedSection(
  * Component for the dialog that lets the user create an invitation
  * @param props The props
  */
-export default function CreateInvitationDialogContent(props: CreateInvitationDialogContentProps) {
+export default function CreateInvitationDialogContent(props: Readonly<CreateInvitationDialogContentProps>) {
     const {t} = useTranslation()
 
     const {

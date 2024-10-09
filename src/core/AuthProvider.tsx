@@ -1,4 +1,4 @@
-import {PropsWithChildren, useState} from "react";
+import {PropsWithChildren, useMemo, useState} from "react";
 import User from "./model/User.ts";
 import dayjs from "dayjs";
 import {getRefreshToken, setAccessToken, setRefreshToken} from "./storage/tokens.ts";
@@ -42,7 +42,7 @@ export interface AuthProviderType {
  * Provides basic auth operations as a React context
  * @param props The children
  */
-export default function AuthProvider(props: PropsWithChildren) {
+export default function AuthProvider(props: Readonly<PropsWithChildren>) {
     const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(null)
 
     const fetchUser = async (): Promise<User | null> => {
@@ -109,25 +109,28 @@ export default function AuthProvider(props: PropsWithChildren) {
         setAuthenticatedUser(null)
     }
 
-    const value: AuthProviderType = {
-        authenticatedUser: authenticatedUser,
-        async refresh(): Promise<boolean> {
-            return refresh()
-        },
-        async toggleUserChanged(): Promise<User | null> {
-            const user = await fetchUser()
-            if (user != null) {
-                setAuthenticatedUser(user)
+    const value: AuthProviderType = useMemo(() => {
+            return {
+                authenticatedUser: authenticatedUser,
+                async refresh(): Promise<boolean> {
+                    return refresh()
+                },
+                async toggleUserChanged(): Promise<User | null> {
+                    const user = await fetchUser()
+                    if (user != null) {
+                        setAuthenticatedUser(user)
+                    }
+                    return user
+                },
+                async logout() {
+                    await logout()
+                },
+                async logoutAll() {
+                    await logoutAll()
+                }
             }
-            return user
-        },
-        async logout() {
-            await logout()
-        },
-        async logoutAll() {
-            await logoutAll()
-        }
-    }
+        }, [authenticatedUser]
+    )
 
     return (
         <AuthContext.Provider value={value} children={props.children}/>

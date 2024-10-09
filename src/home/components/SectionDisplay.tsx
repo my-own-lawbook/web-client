@@ -22,7 +22,7 @@ type SectionDisplayProps = {
  * Component to introduce a new section on the home page with a description
  * @param props The props
  */
-export default function SectionDisplay(props: SectionDisplayProps) {
+export default function SectionDisplay(props: Readonly<SectionDisplayProps>) {
     return (
         <Box className="section-display">
             <Typography className="title" variant={"h2"}>

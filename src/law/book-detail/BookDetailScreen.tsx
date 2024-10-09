@@ -18,12 +18,12 @@ import {useTranslation} from "react-i18next";
  * @param props The props
  */
 function BookDetailContent(
-    props: {
+    props: Readonly<{
         book: Book,
         members: BookMember[],
         entries: Entry[],
         sections: Map<number, Section[]>
-    }
+    }>
 ) {
     const {t} = useTranslation()
 

@@ -36,12 +36,12 @@ type MOLTabsProps<T> = {
 }
 
 function MOLTab(
-    props: {
+    props: Readonly<{
         display: string,
         selected: boolean,
         onSelect: () => void,
         enabled: boolean
-    }
+    }>
 ) {
     let className = props.selected ? "tab tab-selected" : "tab"
     className = props.enabled ? className : className + " tab-disabled"
@@ -62,12 +62,12 @@ function MOLTab(
  * Component for displaying a lightweight tab row
  * @param props The props
  */
-export default function MOLTabs<T>(props: MOLTabsProps<T>) {
+export default function MOLTabs<T>(props: Readonly<MOLTabsProps<T>>) {
     return (
         <Paper elevation={4} className="tabs">
-            {props.tabs.map((tab, index) => {
+            {props.tabs.map(tab => {
                 return <MOLTab
-                    key={index}
+                    key={JSON.stringify(tab)}
                     selected={tab == props.selected}
                     display={props.localizedValueOf(tab)}
                     onSelect={() => props.onSelect(tab)}

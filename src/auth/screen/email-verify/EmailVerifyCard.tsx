@@ -9,7 +9,7 @@ import {Trans, useTranslation} from "react-i18next";
 /**
  * Component for entering the email verifying code
  */
-export default function EmailVerifyCard(props: SuccessHandlerProps) {
+export default function EmailVerifyCard(props: Readonly<SuccessHandlerProps>) {
     const {t} = useTranslation()
     const [params] = useSearchParams()
 

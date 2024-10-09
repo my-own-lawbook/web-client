@@ -9,16 +9,16 @@ import User from "./model/User.ts";
 const AuthContext = createContext<AuthProviderType>({
     authenticatedUser: null,
     refresh(): Promise<boolean> {
-        return Promise.reject()
+        return Promise.resolve(false)
     },
     toggleUserChanged(): Promise<User | null> {
-        return Promise.reject()
+        return Promise.resolve(null)
     },
     logout() {
-        return Promise.reject()
+        return Promise.resolve()
     },
     logoutAll() {
-        return Promise.reject()
+        return Promise.resolve()
     }
 })
 

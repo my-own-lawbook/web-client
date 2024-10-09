@@ -43,8 +43,17 @@ interface AuthFormWrapperCardProps {
  * Card that contains the form for auth actions like login and signup
  * @param props The props of the card
  */
-export default function AuthFormWrapperCard(props: AuthFormWrapperCardProps) {
+export default function AuthFormWrapperCard(props: Readonly<AuthFormWrapperCardProps>) {
     const theme = useTheme()
+
+    let infoTextContent: JSX.Element | string | null
+    if (!props.infoText) {
+        infoTextContent = null
+    } else if (typeof props.infoText == 'string') {
+        infoTextContent = (<Typography variant={'subtitle1'}>{props.infoText}</Typography>)
+    } else {
+        infoTextContent = props.infoText as JSX.Element
+    }
 
     return (
         <Card
@@ -56,11 +65,8 @@ export default function AuthFormWrapperCard(props: AuthFormWrapperCardProps) {
             }}>
             {props.title ? <Typography variant={'h4'}>{props.title}</Typography> : null}
 
-            {props.infoText ?
-                typeof props.infoText == "string" ?
-                    <Typography variant={'subtitle1'}>{props.infoText}</Typography> :
-                    props.infoText
-                : null}
+
+            {infoTextContent}
 
             {props.children}
 

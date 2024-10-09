@@ -37,10 +37,10 @@ type InvitationDialogProps = {
  * @param props The props
  */
 function AuthorAndBookSummary(
-    props: {
+    props: Readonly<{
         author: ForeignUser,
         book: Book
-    }
+    }>
 ) {
     return (
         <Typography>
@@ -51,11 +51,7 @@ function AuthorAndBookSummary(
                     book: props.book.name
                 }}
             >
-                _
-                <b>_</b>
-                _
-                <b>_</b>
-                _
+                _<b>_</b>_<b>_</b>_
             </Trans>
         </Typography>
     )
@@ -66,9 +62,9 @@ function AuthorAndBookSummary(
  * @param props The props
  */
 function InvitationMessage(
-    props: {
+    props: Readonly<{
         message: string
-    }
+    }>
 ) {
     return (
         <Box className="invitation-dialog-message-wrapper">
@@ -84,9 +80,9 @@ function InvitationMessage(
  * @param props The props
  */
 function ExpirationInfo(
-    props: {
+    props: Readonly<{
         expiresAt: Dayjs
-    }
+    }>
 ) {
     return (
         <Typography>
@@ -97,10 +93,7 @@ function ExpirationInfo(
                     time: props.expiresAt.toDate()
                 }}
             >
-                _
-                <b>_</b>
-                _
-
+                _<b>_</b>_
             </Trans>
         </Typography>
     )
@@ -111,9 +104,9 @@ function ExpirationInfo(
  * @param props The props
  */
 function RoleInfo(
-    props: {
+    props: Readonly<{
         role: MemberRole
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -123,9 +116,7 @@ function RoleInfo(
                 i18nKey='components.dialog.invitation.role_info'
                 values={{role: t(localizedRoleName(props.role))}}
             >
-                _
-                <b>_</b>
-                _
+                _<b>_</b>_
             </Trans>
         </Typography>
     )
@@ -136,9 +127,9 @@ function RoleInfo(
  * @param props The props
  */
 function InvitationDialogContent(
-    props: {
+    props: Readonly<{
         invitation: Invitation
-    }
+    }>
 ) {
     return (
         <DialogContent className="invitation-dialog-content">
@@ -158,7 +149,7 @@ function InvitationDialogContent(
  * Component for a invitation dialog
  * @param props The props
  */
-export default function InvitationDialog(props: InvitationDialogProps) {
+export default function InvitationDialog(props: Readonly<InvitationDialogProps>) {
     const {t} = useTranslation()
 
     return (
