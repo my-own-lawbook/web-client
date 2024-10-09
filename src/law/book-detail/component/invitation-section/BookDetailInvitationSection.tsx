@@ -51,72 +51,79 @@ type BookDetailInvitationSectionProps = {
  * @param props The props
  */
 function InvitationGrid(
-    props: {
+    props: Readonly<{
         invitations: Invitation[],
         onInvitationSettingsClick: (invitation: Invitation, anchor: HTMLElement) => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
+    const headerItemsData = [
+        {label: 'book.invitation.table.row_1', icon: <Person/>},
+        {label: 'book.invitation.table.row_2', icon: <Security/>},
+        {label: 'book.invitation.table.row_3', icon: <AccessTime/>},
+        {label: 'book.invitation.table.row_4', icon: <Warning/>},
+        {label: 'book.invitation.table.row_5', icon: <Security/>},
+        {label: 'book.invitation.table.row_6', icon: <Chat/>},
+        {label: 'book.invitation.table.row_7', icon: <Settings/>},
+    ]
+
     return (
         <MOLDataGrid
-            headerNodes={[
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_1')}
-                    icon={<Person/>}
-                />,
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_2')}
-                    icon={<Security/>}
-                />,
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_3')}
-                    icon={<AccessTime/>}
-                />,
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_4')}
-                    icon={<Warning/>}
-                />,
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_5')}
-                    icon={<Security/>}
-                />,
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_6')}
-                    icon={<Chat/>}
-                />,
-                <MOLDataGridHeaderItem
-                    label={t('book.invitation.table.row_7')}
-                    icon={<Settings/>}
-                />
-            ]}
+            headerNodes={headerItemsData.map(header => {
+                    return {
+                        node: <MOLDataGridHeaderItem
+                            label={t(header.label)}
+                            icon={header.icon}
+                            key={header.label}
+                        />, id:
+                        header.label
+                    }
+                }
+            )}
             items={props.invitations}
             rowNodes={invitation => [
-                <Typography>
+                {
+                    node: <Typography key={1}>
                     {formatName(invitation.recipient)}
-                </Typography>,
+                    </Typography>, fieldName: 'recipient'
+                },
 
-                <Typography>
+                {
+                    node: <Typography key={2}>
                     {formatName(invitation.author)}
-                </Typography>,
+                    </Typography>, fieldName: 'author'
+                },
 
-                <Typography
-                    fontWeight={'300'}>
+                {
+                    node: <Typography
+                        fontWeight={'300'}
+                        key={3}
+                    >
                     {t('book.invitation.table.row_3_value', {date: invitation.sentAt.toDate()})}
-                </Typography>,
+                    </Typography>, fieldName: 'sentAt'
+                },
 
-                <Typography
+                {
+                    node: <Typography
                     fontWeight={'300'}
+                    key={4}
                 >
                     {invitation.expiredAt ? t('book.invitation.table.row_4_value', {date: invitation.expiredAt.toDate()}) : '-'}
-                </Typography>,
+                    </Typography>, fieldName: 'expiredAt'
+                },
 
-                <Typography
-                    fontWeight={'300'}>
+                {
+                    node: <Typography
+                        fontWeight={'300'}
+                        key={5}
+                    >
                     {t(localizedRoleName(invitation.role))}
-                </Typography>,
+                    </Typography>, fieldName: 'role'
+                },
 
-                <Typography
+                {
+                    node: <Typography
                     fontWeight={'300'}
                     style={{
                         display: '-webkit-box',
@@ -125,13 +132,20 @@ function InvitationGrid(
                         textOverflow: 'ellipsis',
                         overflow: 'hidden'
                     }}
+                    key={6}
                 >
                     {invitation.message ?? '-'}
-                </Typography>,
+                    </Typography>, fieldName: 'message'
+                },
 
-                <IconButton onClick={(e) => props.onInvitationSettingsClick(invitation, e.currentTarget)}>
+                {
+                    node: <IconButton
+                        onClick={(e) => props.onInvitationSettingsClick(invitation, e.currentTarget)}
+                        key={7}
+                    >
                     <MoreVert/>
-                </IconButton>
+                    </IconButton>, fieldName: 'icon-button'
+                }
             ]}
         />
     )
@@ -142,11 +156,11 @@ function InvitationGrid(
  * @param props The props
  */
 function InvitationSettingsMenu(
-    props: {
+    props: Readonly<{
         memberRole: MemberRole,
         menuState: ValuedMenuState<Invitation>,
         onRevoke: () => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -198,7 +212,7 @@ function NoInvitationsNotice(
 /**
  * Component for the section that displays the open invitations for a book
  */
-export default function BookDetailInvitationSection(props: BookDetailInvitationSectionProps) {
+export default function BookDetailInvitationSection(props: Readonly<BookDetailInvitationSectionProps>) {
     const {t} = useTranslation()
 
     const {invitationSettingsMenuState, createInvitationDialogState} = useBookDetailInvitationSection()

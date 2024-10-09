@@ -44,12 +44,13 @@ type FetchInvitationsQuery = {
 async function populateInvitationResponse(invitationResult: ApiResult<InvitationResponse[]>, query: FetchInvitationsQuery): Promise<ApiResult<Invitation[]>> {
     const filteredInvitationResult = invitationResult.map(invitations =>
         invitations.filter(invitation => {
+            const isExpired = invitation.expiredAt ? dayjs(invitation.expiredAt) > dayjs() : true
             const r = [
                 query.onlyInvitedBy ? invitation.recipientId == query.onlyInvitedBy : true,
                 query.onlyAuthored ? invitation.authorId == query.onlyAuthored : true,
                 query.onlyInBook ? invitation.targetBookId == query.onlyInBook : true,
                 query.alsoInactive ? true : invitation.status == InvitationStatus.Open.valueOf(),
-                query.alsoExpired ? (invitation.expiredAt ? dayjs(invitation.expiredAt) > dayjs() : true) : true
+                query.alsoExpired ? isExpired : true
             ]
 
 

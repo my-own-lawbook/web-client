@@ -49,8 +49,8 @@ export function validateProfileName(name: string): string | null {
 export function validateInPast(date: Dayjs | null): string | null {
     const now = dayjs()
 
-    if (date == null || !date!.isBefore(now, "day")) return "validation.format.date_past"
-    else return null
+    if (date?.isBefore(now, "day")) return null
+    else return "validation.format.date_past"
 }
 
 /**
@@ -61,8 +61,8 @@ export function validateInPast(date: Dayjs | null): string | null {
 export function validateInFuture(date: Dayjs | null): string | null {
     const now = dayjs()
 
-    if (date == null || !date!.isAfter(now, "day")) return "validation.format.date_future"
-    else return null
+    if (date?.isAfter(now, "day")) return null
+    else return "validation.format.date_future"
 }
 
 /**
@@ -73,7 +73,7 @@ export function validateInFuture(date: Dayjs | null): string | null {
  * @param username The user entered username
  */
 export function validateUsername(username: string): string | null {
-    const regex = /^[a-zA-Z0-9_]{4,20}$/
+    const regex = /^\w{4,20}$/
 
     if (regex.test(username)) return null
     else return "validation.format.username"

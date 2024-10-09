@@ -27,10 +27,10 @@ type MOLFooterProps = {
  * @param props The props
  */
 function FooterLink(
-    props: {
+    props: Readonly<{
         onClick: () => void,
         text: string
-    }
+    }>
 ) {
     const theme = useTheme()
 
@@ -53,7 +53,7 @@ function FooterLink(
  * The Footer used in all mol screens
  * @params props The props
  */
-export default function MOLFooter(props: MOLFooterProps) {
+export default function MOLFooter(props: Readonly<MOLFooterProps>) {
     const theme = useTheme()
 
     return (

@@ -9,9 +9,9 @@ import './LoginCard.css'
 import {Trans, useTranslation} from "react-i18next";
 
 function SignupText(
-    props: {
+    props: Readonly<{
         onClick: () => void
-    }
+    }>
 ) {
     return (
         <Typography
@@ -34,7 +34,7 @@ function SignupText(
  * Login Card
  * @param props The props
  */
-export default function LoginCard(props: SuccessHandlerProps) {
+export default function LoginCard(props: Readonly<SuccessHandlerProps>) {
     const navigate = useNavigate()
     const {t} = useTranslation()
     const {state, onSubmit} = useLogin(props.onSuccess)

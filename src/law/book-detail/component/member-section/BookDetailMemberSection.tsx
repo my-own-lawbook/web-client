@@ -59,12 +59,12 @@ type BookDetailMemberSectionProps = {
  * @param props The props
  */
 function MemberSettingMenu(
-    props: {
+    props: Readonly<{
         memberRole: MemberRole,
         menuState: ValuedMenuState<BookMember>,
         onRemove: () => void,
         onChangeRole: () => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -96,10 +96,10 @@ function MemberSettingMenu(
  * @param props The props
  */
 function RemoveMemberDialog(
-    props: {
+    props: Readonly<{
         dialogState: ValuedDialogState<BookMember>,
         onRemove: () => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -115,11 +115,7 @@ function RemoveMemberDialog(
                             i18nKey={'book.member.dialog.remove.description'}
                             values={{user: props.dialogState.data.username}}
                         >
-                            _
-                            <b>
-                                _
-                            </b>
-                            _
+                            _<b>_</b>_
                         </Trans>
                     </DialogContentText>
                     : null}
@@ -136,59 +132,66 @@ function RemoveMemberDialog(
  * @param props The props
  */
 function MemberGrid(
-    props: {
+    props: Readonly<{
         members: BookMember[],
         onMemberSettingsClick: (member: BookMember, anchor: HTMLElement) => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
+    const headerItemsData = [
+        {label: 'book.member.table.column_1', icon: <Person/>},
+        {label: 'book.member.table.column_2', icon: <TextFields/>},
+        {label: 'book.member.table.column_3', icon: <Security/>},
+        {label: 'book.member.table.column_4', icon: <Settings/>}
+    ]
+
     return (
         <MOLDataGrid
-            headerNodes={[
-                <MOLDataGridHeaderItem
-                    label={t('book.member.table.column_1')}
-                    icon={<Person/>}
-                />,
-
-                <MOLDataGridHeaderItem
-                    label={t('book.member.table.column_2')}
-                    icon={<TextFields/>}
-                />,
-
-                <MOLDataGridHeaderItem
-                    label={t('book.member.table.column_3')}
-                    icon={<Security/>}
-                />,
-
-                <MOLDataGridHeaderItem
-                    label={t('book.member.table.column_4')}
-                    icon={<Settings/>}
-                />
-            ]}
+            headerNodes={headerItemsData.map(header => {
+                    return {
+                        node: <MOLDataGridHeaderItem
+                            label={t(header.label)}
+                            icon={header.icon}
+                            key={header.label}
+                        />, id: header.label
+                    }
+                }
+            )}
             items={props.members}
             rowNodes={member => [
-                <Typography>
+                {
+                    node: <Typography key={1}>
                     {formatName(member)}
-                </Typography>,
+                    </Typography>, fieldName: 'name'
+                },
 
-                <Typography
+                {
+                    node: <Typography
                     fontWeight={'300'}
+                    key={2}
                 >
                     {member.username}
-                </Typography>,
+                    </Typography>, fieldName: 'username'
+                },
 
-                <Typography
+                {
+                    node: <Typography
                     fontWeight={'300'}
+                    key={3}
                 >
                     {t(localizedRoleName(member.memberRole))}
-                </Typography>,
+                    </Typography>, fieldName: 'memberRole'
+                },
 
-                <IconButton
+                {
+                    node: <IconButton
                     onClick={e => props.onMemberSettingsClick(member, e.currentTarget)}
+                    key={4}
                 >
                     <MoreVert/>
-                </IconButton>
+                    </IconButton>, fieldName: 'icon-button'
+                }
             ]}
         />
     )
@@ -199,11 +202,11 @@ function MemberGrid(
  * @param props The props
  */
 function ChooseMemberRoleDialogContent(
-    props: {
+    props: Readonly<{
         dialogState: ValuedDialogState<BookMember>,
         canDowngradeFromAdmin: boolean,
         onSelect: (role: MemberRole) => void
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -250,7 +253,7 @@ function ChooseMemberRoleDialogContent(
  * Component for the section that displays the members of a book
  * @param props The props
  */
-export default function BookDetailMemberSection(props: BookDetailMemberSectionProps) {
+export default function BookDetailMemberSection(props: Readonly<BookDetailMemberSectionProps>) {
     const {
         canRemoveOneAdmin,
         memberSettingsMenuState,

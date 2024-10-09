@@ -47,7 +47,7 @@ type UseSetProfile = {
     /**
      * The on submit callback
      */
-    onSubmit: () => void
+    onSubmit: () => Promise<void>
 
 }
 
@@ -77,7 +77,7 @@ const onSave = async (
     const profileResponse = await setUserProfile(
         firstName.input.value,
         lastName.input.value,
-        birthday.input.value!.toDate()!.toISOString().split("T")[0],
+        birthday.input.value!.toDate().toISOString().split("T")[0],
         gender.input.value!.valueOf()
     )
 
@@ -131,8 +131,8 @@ const useSetProfile = (onSuccess: () => void): UseSetProfile => {
             gender: gender,
             isError: isError
         },
-        onSubmit: () => {
-            return onSave(firstName, lastName, birthday, gender, validateAll, setIsError, onSuccess)
+        async onSubmit() {
+            return await onSave(firstName, lastName, birthday, gender, validateAll, setIsError, onSuccess)
         }
     }
 }

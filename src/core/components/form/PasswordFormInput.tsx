@@ -35,14 +35,14 @@ export default function PasswordFormInput(props: MOLTextFieldProps) {
             helperText={props.field.input.error ? t(props.field.input.error) : null}
             error={props.field.input.error != null}
 
-            InputProps={{
-                endAdornment: (
-                    <IconButton onClick={() => setValueVisible(!valueVisible)}>
+            slotProps={{
+                input: {
+                    endAdornment: <IconButton onClick={() => setValueVisible(!valueVisible)}>
                         {valueVisible ?
                             <VisibilityOff/>
                             : <Visibility/>}
-                    </IconButton>
-                )
+                    </IconButton>,
+                },
             }}
         />
     )

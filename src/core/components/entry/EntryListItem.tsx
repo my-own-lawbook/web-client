@@ -37,10 +37,10 @@ type EntryListItemProps = {
 }
 
 function SectionItem(
-    props: {
+    props: Readonly<{
         section: Section,
         onSettingsClick: (element: HTMLElement) => void
-    }
+    }>
 ) {
     return (
         <Box className="section-item">
@@ -64,7 +64,7 @@ function SectionItem(
  * Component to display a single entry in a list
  * @param props The props
  */
-export default function EntryListItem(props: EntryListItemProps) {
+export default function EntryListItem(props: Readonly<EntryListItemProps>) {
     const [isCollapsed, setIsCollapsed] = useState(false)
 
     return (

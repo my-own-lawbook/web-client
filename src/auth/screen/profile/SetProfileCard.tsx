@@ -9,7 +9,7 @@ import {useTranslation} from "react-i18next";
 /**
  * Component for the auth card that lets a user design their profile
  */
-export default function SetProfileCard(props: SuccessHandlerProps) {
+export default function SetProfileCard(props: Readonly<SuccessHandlerProps>) {
     const {t} = useTranslation()
     const {state, onSubmit} = useSetProfile(props.onSuccess)
 

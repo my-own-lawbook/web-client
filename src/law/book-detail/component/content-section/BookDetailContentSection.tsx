@@ -87,13 +87,13 @@ function NoEntriesNotice(
  * @param props The props
  */
 function EntrySettingsMenu(
-    props: {
+    props: Readonly<{
         menuState: ValuedMenuState<Entry>,
         onAddSectionClick: () => void,
         onEditClick: () => void,
         onDeleteClick: () => void,
         memberRole: MemberRole
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -130,12 +130,12 @@ function EntrySettingsMenu(
  * @param props The props
  */
 function SectionSettingsMenu(
-    props: {
+    props: Readonly<{
         menuState: ValuedMenuState<Section>,
         onEditClick: () => void,
         onDeleteClick: () => void,
         memberRole: MemberRole
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -166,10 +166,10 @@ function SectionSettingsMenu(
  * @param props The props
  */
 function DeleteEntryConfirmationDialog(
-    props: {
+    props: Readonly<{
         onConfirm: () => void,
         dialogState: ValuedDialogState<Entry>
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -188,10 +188,10 @@ function DeleteEntryConfirmationDialog(
  * @param props The props
  */
 function DeleteSectionConfirmationDialog(
-    props: {
+    props: Readonly<{
         onConfirm: () => void,
         dialogState: ValuedDialogState<Section>
-    }
+    }>
 ) {
     const {t} = useTranslation()
 
@@ -209,7 +209,7 @@ function DeleteSectionConfirmationDialog(
  * Component for the section that displays the actual contents of a law-book
  * @param props The props
  */
-export default function BookDetailContentSection(props: BookDetailContentSectionProps) {
+export default function BookDetailContentSection(props: Readonly<BookDetailContentSectionProps>) {
     const {t} = useTranslation()
 
     const {

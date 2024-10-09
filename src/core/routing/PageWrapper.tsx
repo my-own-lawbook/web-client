@@ -10,7 +10,7 @@ import {useAuth} from "../useAuth.ts";
 /**
  * Component that wraps the whole app content (apart from the routes in /auth/*) and displays a footer and header.
  */
-export default function PageWrapper(props: PropsWithChildren) {
+export default function PageWrapper(props: Readonly<PropsWithChildren>) {
     const navigate = useNavigate()
     const navigateHome = () => navigate("/")
     const auth = useAuth()

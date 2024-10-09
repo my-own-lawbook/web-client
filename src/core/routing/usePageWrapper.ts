@@ -16,12 +16,12 @@ type UsePageWrapper = {
     /**
      * Logs the user out
      */
-    logout: () => void,
+    logout: () => Promise<void>,
 
     /**
      * Logs all devices of the user out
      */
-    logoutAll: () => void
+    logoutAll: () => Promise<void>
 
 }
 

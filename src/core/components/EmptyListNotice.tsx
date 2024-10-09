@@ -31,7 +31,7 @@ type EmptyListNoticeProps = {
 /**
  * Component to display information and an action about an empty list
  */
-export default function EmptyListNotice(props: EmptyListNoticeProps) {
+export default function EmptyListNotice(props: Readonly<EmptyListNoticeProps>) {
     const theme = useTheme()
 
     return (

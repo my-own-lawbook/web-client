@@ -25,7 +25,7 @@ type InvitationItemProps = {
  * A component for an invitation item
  * @param props The props
  */
-export default function InvitationItem(props: InvitationItemProps) {
+export default function InvitationItem(props: Readonly<InvitationItemProps>) {
     return (
         <Box className="invitation-item">
             <ButtonBase className="invitation-item-ripple" onClick={props.onClick}>
@@ -39,11 +39,7 @@ export default function InvitationItem(props: InvitationItemProps) {
                             }
                         }
                     >
-                        _
-                        <b>_</b>
-                        _
-                        <b>_</b>
-                        _
+                        _<b>_</b>_<b>_</b>_
                     </Trans>
                 </Typography>
             </ButtonBase>

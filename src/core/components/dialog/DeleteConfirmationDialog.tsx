@@ -35,7 +35,7 @@ type DeleteConfirmationDialogProps<T> = {
  * Component for a generic dialog that prompts the user for a confirmation when deleting something
  * @param props The props
  */
-export default function DeleteConfirmationDialog<T>(props: DeleteConfirmationDialogProps<T>) {
+export default function DeleteConfirmationDialog<T>(props: Readonly<DeleteConfirmationDialogProps<T>>) {
     const {t} = useTranslation()
 
     return (

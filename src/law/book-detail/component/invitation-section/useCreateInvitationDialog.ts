@@ -140,7 +140,7 @@ const useCreateInvitationDialog = (
             user.input.value!.id,
             memberRoleField.input.value,
             isAddExpiration.input.value ? expiresAtField.input.value! : null,
-            isAddMessage.input.value ? messageField.input.value! : null
+            isAddMessage.input.value ? messageField.input.value : null
         )
         if (response.httpStatus == 409) {
             user.setError("validation.context.user.invitation_present")

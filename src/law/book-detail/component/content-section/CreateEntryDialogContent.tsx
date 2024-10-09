@@ -46,7 +46,7 @@ type CreateEntryDialogContentProps = {
  * Component for a dialog that lets a user add an entry to a book
  * @param props The props
  */
-export default function CreateEntryDialogContent(props: CreateEntryDialogContentProps) {
+export default function CreateEntryDialogContent(props: Readonly<CreateEntryDialogContentProps>) {
     const {t} = useTranslation()
 
     const {
