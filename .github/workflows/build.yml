@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Build
+        run: npm ci && npm run build
+
+  unit-test:
+    name: Sonar Analysis
+    runs-on: ubuntu-latest
+
+    needs: [ build ]
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install Sonar Scanner
+        run: npm install -D sonarqube-scanner
+
+      - name: Execute Sonar Analysis
+        run: sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=my-own-lawbook -Dsonar.projectKey=my-own-lawbook_web-client -Dsonar.token=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.projectName=Web App
