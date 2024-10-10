@@ -151,7 +151,7 @@ function createResultFromException<T>(error: unknown): ApiResult<T> {
     }
 }
 
-const baseUrl = "http://descartes:8080/api/v1"
+const baseUrl = `${window.location.protocol}//${window.location.host}/api/v1`
 
 /**
  * Basic call to the mol-rest-api
@@ -175,8 +175,10 @@ export default async function apiCall<T>(path: string, body?: unknown, method: s
             }
         })
 
+        console.debug(`Got axios response ${JSON.stringify(response)}`)
         return createResultFromResponse(response)
     } catch (e) {
+        console.debug(`Got axios error ${JSON.stringify(e)}`)
         return createResultFromException(e)
     }
 }

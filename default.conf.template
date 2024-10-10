@@ -1,0 +1,35 @@
+#
+# Template for the web-server container image.
+#
+# The $API_HOST env variable is substituted at container startup using 'envsubst'
+#
+server {
+    # Internal port is 80
+    listen 80;
+
+    #
+    # 127.0.0.11 is the DNS resolver for docker processes.
+    # This is needed to that the $API_HOST env variable can take a container name as the host
+    #
+    resolver 127.0.0.11 valid=1s;
+
+    #
+    # React files are served at root, to simplify the loading of *.js and *.css files
+    #
+    root /;
+    index index.html;
+
+    #
+    # Requests to /api/ get passed to the backend server
+    #
+    location /api/ {
+        proxy_pass $API_HOST$request_uri;
+    }
+
+    #
+    # Requests to any other path get forwarded to the react index.html file.
+    #
+    location / {
+        try_files $uri /index.html;
+    }
+}
