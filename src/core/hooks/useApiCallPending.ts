@@ -41,7 +41,7 @@ const useApiCallPending = <T>(apiCall: () => Promise<ApiResult<T>>, doLoading?: 
             const result = await memoizedApiCall()
 
             if (result.isSuccess && result.isHttpSuccess) {
-                setData(result.data!)
+                setData(result.data ?? null)
             } else {
                 setIsError(true)
             }
