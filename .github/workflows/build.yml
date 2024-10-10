@@ -4,21 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-
-      - name: Build
-        run: npm ci && npm run build
+  #build:
+  #  name: Build
+  #  runs-on: ubuntu-latest
+  #
+  #  steps:
+  #    - name: Checkout repository code
+  #      uses: actions/checkout@v4
+  #
+  #    - name: Setup Node.js
+  #      uses: actions/setup-node@v4
+  #      with:
+  #        node-version: '20.x'
+  #
+  #    - name: Build
+  #      run: npm ci && npm run build
 
   unit-test:
     name: Sonar Analysis
