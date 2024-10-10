@@ -37,4 +37,4 @@ jobs:
         run: npm install && npm run build && npm install -g sonarqube-scanner
 
       - name: Execute Sonar Analysis
-        run: npx sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=my-own-lawbook -Dsonar.projectKey=my-own-lawbook_web-client -Dsonar.token=$${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true -Dsonar.projectName="Web App"
+        run: sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=my-own-lawbook -Dsonar.projectKey=my-own-lawbook_web-client -Dsonar.token=$${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true
