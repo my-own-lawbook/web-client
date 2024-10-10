@@ -35,8 +35,5 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: Install Sonar Scanner
-        run: npm install -D sonarqube-scanner
-
       - name: Execute Sonar Analysis
-        run: sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=my-own-lawbook -Dsonar.projectKey=my-own-lawbook_web-client -Dsonar.token=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.projectName=Web App
+        run: npx sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=my-own-lawbook -Dsonar.projectKey=my-own-lawbook_web-client -Dsonar.token=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.projectName="Web App"
