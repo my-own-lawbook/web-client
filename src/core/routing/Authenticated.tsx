@@ -18,9 +18,7 @@ export default function Authenticated(props: Readonly<PropsWithChildren>) {
     const authenticated = auth.authenticatedUser?.profile &&
         auth.authenticatedUser.isEmailVerified
 
-    if (authenticated == null) {
-        return <h1>Loading</h1>
-    } else if (authenticated) {
+    if (authenticated) {
         return props.children
     } else {
         return <Navigate to={`/auth/?redirect=${location.pathname}`} replace/>

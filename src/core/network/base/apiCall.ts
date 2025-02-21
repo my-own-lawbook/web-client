@@ -151,7 +151,7 @@ function createResultFromException<T>(error: unknown): ApiResult<T> {
     }
 }
 
-const baseUrl = import.meta.env.API_URL
+const baseUrl = import.meta.env.VITE_API_URL
 
 /**
  * Basic call to the mol-rest-api
