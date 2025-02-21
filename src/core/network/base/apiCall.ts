@@ -151,7 +151,8 @@ function createResultFromException<T>(error: unknown): ApiResult<T> {
     }
 }
 
-const baseUrl = import.meta.env.VITE_API_URL
+// @ts-expect-error Needed for environment variables
+const baseUrl = window.__APP_CONFIG__.VITE_API_URL
 
 /**
  * Basic call to the mol-rest-api
@@ -163,6 +164,7 @@ const baseUrl = import.meta.env.VITE_API_URL
  */
 export default async function apiCall<T>(path: string, body?: unknown, method: string = "get", authHeader: string | null = null): Promise<ApiResult<T>> {
     const url = baseUrl + path
+    console.log(`Making api call to ${url} with base url ${baseUrl}`)
 
     try {
         const response = await axios.request<T>({
