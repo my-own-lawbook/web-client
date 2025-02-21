@@ -11,9 +11,27 @@ This web app allows a user to connect to a (configurable) MOL-backend and perfor
 - Managing members of law-books by sending out invitations and setting permissions
 - Interacting with other users by being invited to a foreign law-book
 
-## Installing
+## Deployment
+
+### Configuration
+
+Independent of the deployment method, the app is configured via environment variables.
+
+| Name         | Description              | Default | Format      | Example              |
+|--------------|--------------------------|---------|-------------|----------------------|
+| VITE_API_URL | Endpoint for the backend | -       | String, URL | https://example.com/ |
 
 ### Container
 
-The web app is best hosted as a container. The following shows an example of how to configure a `docker-compose.yml`
-file to run the client.
+The web app is best deployed as a container. The following shows an example of how to configure a `docker-compose.yml`
+file to run the client. `host_port` is a placeholder for the port the docker container will be exposing.
+
+```yaml
+services:
+  web-app:
+    image: ghcr.io/my-own-lawbook/web-client:<version>
+    ports:
+      "<host_port>:80"
+    environment:
+      VITE_API_URL: <api_url>
+```
