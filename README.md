@@ -10,3 +10,10 @@ This web app allows a user to connect to a (configurable) MOL-backend and perfor
 - Viewing, creating, updating and deleting law-resources (books, entries, sections) you have access to
 - Managing members of law-books by sending out invitations and setting permissions
 - Interacting with other users by being invited to a foreign law-book
+
+## Installing
+
+### Container
+
+The web app is best hosted as a container. The following shows an example of how to configure a `docker-compose.yml`
+file to run the client.
