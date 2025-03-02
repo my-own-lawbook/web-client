@@ -73,11 +73,13 @@ export default function MOLAppBar(props: Readonly<MOLAppBarProps>) {
 
     const menuState = useMenuState<void>()
 
+    // @ts-expect-error Needed for environment variables
+    const host = window.__APP_CONFIG__.VITE_API_URL!
     return (
         <Box
             className="mol-app-bar"
         >
-            <HostInformation host={window.location.host}/>
+            <HostInformation host={host}/>
             <Logo onClick={props.onGoHome}/>
             <UserInformation
                 email={auth.authenticatedUser?.email ?? ''}
