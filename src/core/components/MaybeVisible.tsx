@@ -1,11 +1,12 @@
 import {Box, CircularProgress} from "@mui/material";
 import {ReactNode} from "react";
 import './MaybeVisible.css'
+import PendingApiResult from "../model/PendingApiResult.ts";
 
 /**
  * Props for the MaybeVisible component
  */
-type MaybeVisibleProps = {
+type MaybeVisibleProps<T> = {
 
     /**
      * Whether to show anything at all
@@ -13,9 +14,9 @@ type MaybeVisibleProps = {
     isVisible?: boolean,
 
     /**
-     * Whether the component is loading.
+     * The api result.
      */
-    isLoading: boolean,
+    apiResult: PendingApiResult<T>,
 
     /**
      * Whether to fill the full size
@@ -25,7 +26,7 @@ type MaybeVisibleProps = {
     /**
      * The lambda that creates the component
      */
-    content: () => ReactNode
+    content: (state: T) => ReactNode
 
 }
 
@@ -33,19 +34,22 @@ type MaybeVisibleProps = {
  * Component to conditionally render another component or a progress indicator
  * @param props The props
  */
-export default function MaybeVisible(props: MaybeVisibleProps) {
+export default function MaybeVisible<T>(props: Readonly<MaybeVisibleProps<T>>) {
+    if (props.isVisible == false) {
+        return null
+    }
+
     return (
-        !props.isVisible ? null :
-            <Box
-                sx={props.fullSize ? {height: '100%', width: '100%'} : {}}
-            >
-                {props.isLoading ? (
-                    <div className="maybe-loading-progress-wrapper">
-                        <CircularProgress/>
-                    </div>
-                ) : (
-                    props.content()
-                )}
-            </Box>
-    );
+        <Box
+            sx={props.fullSize ? {height: '100%', width: '100%'} : {}}
+        >
+            {props.apiResult.isLoading ? (
+                <div className="maybe-loading-progress-wrapper">
+                    <CircularProgress/>
+                </div>
+            ) : (
+                props.content(props.apiResult.data!)
+            )}
+        </Box>
+    )
 }

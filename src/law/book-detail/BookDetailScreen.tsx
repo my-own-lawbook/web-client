@@ -66,36 +66,29 @@ export default function BookDetailScreen() {
     const {t} = useTranslation()
 
     const {
-        book,
-        members,
-        entries,
-        sections,
+        memberState,
+        contentState,
+        invitationsState,
+        detailState,
         memberRole,
         selectedTab,
-        openInvitations,
         selectTab,
         updateUserRole,
         removeUser,
         revokeInvitation
     } = useBookDetailScreen()
-    const isDetailLoading = ![book, members, entries, sections].every(p => p.isFinishedSuccess)
-
-    const isMembersLoading = ![members, memberRole, book].every(p => p.isFinishedSuccess)
-    const isInvitationsLoading = ![memberRole, openInvitations, book].every(p => p.isFinishedSuccess)
-    const isContentLoading = ![entries, sections, memberRole, book].every(p => p.isFinishedSuccess)
-
     return (
         <Box className="book-detail-screen">
 
             <Paper elevation={4} className="book-detail-container">
                 <MaybeVisible
-                    isLoading={isDetailLoading}
-                    content={() =>
+                    apiResult={detailState}
+                    content={state =>
                         <BookDetailContent
-                            book={book.data!}
-                            members={members.data!}
-                            entries={entries.data!}
-                            sections={sections.data!}
+                            book={state.book}
+                            members={state.members}
+                            entries={state.entries}
+                            sections={state.sections}
                         />
                     }
                 />
@@ -103,11 +96,11 @@ export default function BookDetailScreen() {
 
             <Box className="book-detail-content">
                 <MaybeVisible
-                    isLoading={!memberRole.isFinishedSuccess}
-                    content={() =>
+                    apiResult={memberRole}
+                    content={state =>
                         <MOLTabs
                             tabs={[BookDetailTab.Content, BookDetailTab.Members, BookDetailTab.Invitations]}
-                            enabled={tab => tab == BookDetailTab.Invitations ? memberRole.data!.valueOf() >= MemberRole.Moderator.valueOf() : true}
+                            enabled={tab => tab == BookDetailTab.Invitations ? state.valueOf() >= MemberRole.Moderator.valueOf() : true}
                             selected={selectedTab}
                             localizedValueOf={tab => t(localizedNameForTab(tab))}
                             onSelect={selectTab}
@@ -118,13 +111,13 @@ export default function BookDetailScreen() {
                 <MaybeVisible
                     fullSize={true}
                     isVisible={selectedTab == BookDetailTab.Invitations}
-                    isLoading={isInvitationsLoading}
-                    content={() =>
+                    apiResult={invitationsState}
+                    content={state =>
                         <BookDetailInvitationSection
-                            refreshInvitations={openInvitations.refreshSilent}
-                            book={book.data!}
-                            invitations={openInvitations.data!}
-                            memberRole={memberRole.data!}
+                            refreshInvitations={invitationsState.refreshSilent}
+                            book={state.book}
+                            invitations={state.openInvitations}
+                            memberRole={state.memberRole}
                             onRevokeInvitation={revokeInvitation}
                         />
                     }
@@ -133,11 +126,11 @@ export default function BookDetailScreen() {
                 <MaybeVisible
                     fullSize={true}
                     isVisible={selectedTab == BookDetailTab.Members}
-                    isLoading={isMembersLoading}
-                    content={() =>
+                    apiResult={memberState}
+                    content={state =>
                         <BookDetailMemberSection
-                            members={members.data!}
-                            memberRole={memberRole.data!}
+                            members={state.members}
+                            memberRole={state.memberRole}
                             onChangeRole={updateUserRole}
                             onRemoveMember={removeUser}
                         />
@@ -147,15 +140,15 @@ export default function BookDetailScreen() {
                 <MaybeVisible
                     fullSize={true}
                     isVisible={selectedTab == BookDetailTab.Content}
-                    isLoading={isContentLoading}
-                    content={() =>
+                    apiResult={contentState}
+                    content={state =>
                         <BookDetailContentSection
-                            entries={entries.data!}
-                            sections={sections.data!}
-                            memberRole={memberRole.data!}
-                            book={book.data!}
-                            refreshEntries={entries.refreshSilent}
-                            refreshSections={sections.refreshSilent}
+                            entries={state.entries}
+                            sections={state.sections}
+                            memberRole={state.memberRole}
+                            book={state.book}
+                            refreshEntries={contentState.refreshSilent}
+                            refreshSections={contentState.refreshSilent}
                         />
                     }
                 />

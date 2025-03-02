@@ -1,4 +1,7 @@
-import PendingApiResult from "../../core/model/PendingApiResult.ts";
+import PendingApiResult, {
+    combinePendingApiResults3,
+    combinePendingApiResults4
+} from "../../core/model/PendingApiResult.ts";
 import Book from "../../core/model/Book.ts";
 import {useParams} from "react-router-dom";
 import useApiCallPending from "../../core/hooks/useApiCallPending.ts";
@@ -42,6 +45,138 @@ export enum BookDetailTab {
 }
 
 /**
+ * State for the invitations section.
+ */
+export type InvitationsState = {
+
+    /**
+     * The users member role.
+     */
+    memberRole: MemberRole,
+
+    /**
+     * The open invitations.
+     */
+    openInvitations: Invitation[],
+
+    /**
+     * The selected book
+     */
+    book: Book
+
+}
+
+const createInvitationsState = (memberRole: MemberRole, openInvitations: Invitation[], book: Book) => {
+    return {
+        memberRole: memberRole,
+        openInvitations: openInvitations,
+        book: book
+    }
+}
+
+/**
+ * State for the content section.
+ */
+export type ContentState = {
+
+    /**
+     * The selected book.
+     */
+    book: Book
+
+    /**
+     * The entries.
+     */
+    entries: Entry[],
+
+    /**
+     * The sections.
+     */
+    sections: Map<number, Section[]>,
+
+    /**
+     * The users member role
+     */
+    memberRole: MemberRole
+
+}
+
+const createContentState = (book: Book, entries: Entry[], sections: Map<number, Section[]>, memberRole: MemberRole) => {
+    return {
+        book: book,
+        entries: entries,
+        sections: sections,
+        memberRole: memberRole
+    }
+}
+
+/**
+ * State for the members section.
+ */
+export type MemberState = {
+
+    /**
+     * The members of the book.
+     */
+    members: BookMember[],
+
+    /**
+     * The selected book.
+     */
+    book: Book,
+
+    /**
+     * The users member role
+     */
+    memberRole: MemberRole
+
+}
+
+const createMemberState = (members: BookMember[], book: Book, memberRole: MemberRole) => {
+    return {
+        members: members,
+        book: book,
+        memberRole: memberRole
+    }
+}
+
+/**
+ * The state for the detail section.
+ */
+export type DetailState = {
+
+    /**
+     * The selected book.
+     */
+    book: Book,
+
+    /**
+     * The members.
+     */
+    members: BookMember[],
+
+    /**
+     * The entries.
+     */
+    entries: Entry[],
+
+    /**
+     * The sections.
+     */
+    sections: Map<number, Section[]>
+
+}
+
+const createDetailState = (book: Book, members: BookMember[], entries: Entry[], sections: Map<number, Section[]>) => {
+    return {
+        book: book,
+        members: members,
+        entries: entries,
+        sections: sections
+    }
+}
+
+/**
  * Gets the localized name for a tab
  * @param tab The tab
  */
@@ -57,34 +192,29 @@ export function localizedNameForTab(tab: BookDetailTab): string {
 type UseBookDetailScreen = {
 
     /**
-     * The book
+     * The state for the members section
      */
-    book: PendingApiResult<Book>,
+    memberState: PendingApiResult<MemberState>,
 
     /**
-     * The members of the book
+     * The state for the content section.
      */
-    members: PendingApiResult<BookMember[]>,
+    contentState: PendingApiResult<ContentState>,
 
     /**
-     * The entries for the specific book
+     * The state for the invitations list
      */
-    entries: PendingApiResult<Entry[]>,
+    invitationsState: PendingApiResult<InvitationsState>,
 
     /**
-     * The sections for each entry in the book
+     * State for the detail section.
      */
-    sections: PendingApiResult<Map<number, Section[]>>,
+    detailState: PendingApiResult<DetailState>,
 
     /**
-     * The member role of the currently logged-in user for the selected book
+     * The member role of the user.
      */
     memberRole: PendingApiResult<MemberRole>,
-
-    /**
-     * The open invitations for the current book
-     */
-    openInvitations: PendingApiResult<Invitation[]>
 
     /**
      * The currently selected tab
@@ -196,7 +326,10 @@ const useBookDetailScreen = (): UseBookDetailScreen => {
     const bookId = parseInt(_bookId ?? '-1') || -1
 
     const bookApiResult = useApiCallPending(() => fetchBook(bookId))
-    const membersApiResult = useApiCallPending(() => fetchMembersOfBook(bookId))
+    const membersApiResult = useApiCallPending(() => {
+        console.log(`Will call fetchMembersOfBook`)
+        return fetchMembersOfBook(bookId)
+    })
     const entriesApiResult = useApiCallPending(() => fetchEntriesInBook(bookId))
     const memberRoleApiResult = useApiCallPending(() => fetchMemberRoleInBook(auth.authenticatedUser!.id, bookId))
     const invitationsApiResult = useApiCallPending(() => fetchInvitations({onlyInBook: bookId}))
@@ -205,14 +338,14 @@ const useBookDetailScreen = (): UseBookDetailScreen => {
     const entriesIds = entriesApiResult.isFinishedSuccess ? entriesApiResult.data!.map(entry => entry.id) : undefined
     const sectionsApiResult = useApiCallPending(() => fetchSectionsForEntries(entriesIds!), shouldDoLoading)
 
+    console.log(`Got member role api result ${JSON.stringify(membersApiResult)}`)
 
     return {
-        book: bookApiResult,
-        members: membersApiResult,
-        entries: entriesApiResult,
-        sections: sectionsApiResult,
+        memberState: combinePendingApiResults3(membersApiResult, bookApiResult, memberRoleApiResult, createMemberState),
+        contentState: combinePendingApiResults4(bookApiResult, entriesApiResult, sectionsApiResult, memberRoleApiResult, createContentState),
+        invitationsState: combinePendingApiResults3(memberRoleApiResult, invitationsApiResult, bookApiResult, createInvitationsState),
+        detailState: combinePendingApiResults4(bookApiResult, membersApiResult, entriesApiResult, sectionsApiResult, createDetailState),
         memberRole: memberRoleApiResult,
-        openInvitations: invitationsApiResult,
         selectedTab: selectedTab,
         selectTab: setSelectedTab,
         async updateUserRole(userId: number, memberRole: MemberRole): Promise<void> {

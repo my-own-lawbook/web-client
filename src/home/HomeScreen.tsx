@@ -26,9 +26,6 @@ export default function HomeScreen() {
         denyInvitation
     } = useHomeScreen()
 
-    const isBooksLoading = !books.isFinishedSuccess
-    const isInvitationsLoading = !invitations.isFinishedSuccess
-
     const onBookClickAction = (book: Book) => navigate(`/law-books/${book.id}/`)
 
     const booksDescriptionMessage = books.resolve(
@@ -49,11 +46,11 @@ export default function HomeScreen() {
                     title={t('home.sections.books.title')}
                     description={booksDescriptionMessage}/>
                 <MaybeVisible
-                    isLoading={isBooksLoading}
-                    content={() => <Box
+                    apiResult={books}
+                    content={state => <Box
                         className="books-container"
                     >
-                        {books.data!.map(book =>
+                        {state.map(book =>
                             <BookCard
                                 book={book}
                                 onClick={onBookClickAction}
@@ -70,11 +67,11 @@ export default function HomeScreen() {
                     title={t('home.sections.invitations.title')}
                     description={invitationsDescriptionMessage}/>
                 <MaybeVisible
-                    isLoading={isInvitationsLoading}
-                    content={() => <Box
+                    apiResult={invitations}
+                    content={state => <Box
                         className="invitations-container"
                     >
-                        {invitations.data!.map(invitation =>
+                        {state.map(invitation =>
                             <InvitationItem
                                 invitation={invitation}
                                 onClick={() => invitationDialogState.open(invitation)}

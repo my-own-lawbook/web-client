@@ -49,4 +49,76 @@ class PendingApiResult<T> {
 
 }
 
+/**
+ * Combines two pending api results logically.
+ *
+ * @param par1 The first api result
+ * @param par2 The second api result
+ * @param mapper The mapping function
+ */
+export function combinePendingApiResults2<T1, T2, R>(par1: PendingApiResult<T1>, par2: PendingApiResult<T2>, mapper: (d1: T1, d2: T2) => R): PendingApiResult<R> {
+    const pars = [par1, par2]
+    return new PendingApiResult<R>(
+        pars.some(par => par.isLoading),
+        pars.some(par => par.isError),
+        pars.every(par => par.isFinishedSuccess),
+        pars.every(par => par.data != null) ? mapper(par1.data!, par2.data!) : null,
+        () => {
+            pars.forEach(par => par.refresh())
+        },
+        () => {
+            pars.forEach(par => par.refreshSilent())
+        }
+    )
+}
+
+/**
+ * Combines three pending api results logically.
+ *
+ * @param par1 The first api result
+ * @param par2 The second api result
+ * @param par3 The third api result
+ * @param mapper The mapping function
+ */
+export function combinePendingApiResults3<T1, T2, T3, R>(par1: PendingApiResult<T1>, par2: PendingApiResult<T2>, par3: PendingApiResult<T3>, mapper: (d1: T1, d2: T2, d3: T3) => R): PendingApiResult<R> {
+    const pars = [par1, par2, par3]
+    return new PendingApiResult<R>(
+        pars.some(par => par.isLoading),
+        pars.some(par => par.isError),
+        pars.every(par => par.isFinishedSuccess),
+        pars.every(par => par.data != null) ? mapper(par1.data!, par2.data!, par3.data!) : null,
+        () => {
+            pars.forEach(par => par.refresh())
+        },
+        () => {
+            pars.forEach(par => par.refreshSilent())
+        }
+    )
+}
+
+/**
+ * Combines four pending api results logically.
+ *
+ * @param par1 The first api result
+ * @param par2 The second api result
+ * @param par3 The third api result
+ * @param par4 The fourth api result
+ * @param mapper The mapping function
+ */
+export function combinePendingApiResults4<T1, T2, T3, T4, R>(par1: PendingApiResult<T1>, par2: PendingApiResult<T2>, par3: PendingApiResult<T3>, par4: PendingApiResult<T4>, mapper: (d1: T1, d2: T2, d3: T3, d4: T4) => R): PendingApiResult<R> {
+    const pars = [par1, par2, par3, par4]
+    return new PendingApiResult<R>(
+        pars.some(par => par.isLoading),
+        pars.some(par => par.isError),
+        pars.every(par => par.isFinishedSuccess),
+        pars.every(par => par.data != null) ? mapper(par1.data!, par2.data!, par3.data!, par4.data!) : null,
+        () => {
+            pars.forEach(par => par.refresh())
+        },
+        () => {
+            pars.forEach(par => par.refreshSilent())
+        }
+    )
+}
+
 export default PendingApiResult

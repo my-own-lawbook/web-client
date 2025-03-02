@@ -8,7 +8,7 @@ import {ApiResult} from "../network/base/apiCall.ts";
  * @param doLoading If the call should only be simulated and set to loading
  */
 const useApiCallPending = <T>(apiCall: () => Promise<ApiResult<T>>, doLoading?: boolean): PendingApiResult<T> => {
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState<boolean | null>(null)
     const [data, setData] = useState<T | null>(null)
 
