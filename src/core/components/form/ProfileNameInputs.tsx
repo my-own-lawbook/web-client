@@ -1,11 +1,11 @@
 import {TextField} from "@mui/material";
-import MOLTextFieldProps from "./base/MOLTextFieldProps.ts";
+import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Text input field for the first name input
  */
-export function FirstNameInput(props: MOLTextFieldProps) {
+export function FirstNameInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (
@@ -34,7 +34,7 @@ export function FirstNameInput(props: MOLTextFieldProps) {
 /**
  * Text input field for the last name input
  */
-export function LastNameInput(props: MOLTextFieldProps) {
+export function LastNameInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (

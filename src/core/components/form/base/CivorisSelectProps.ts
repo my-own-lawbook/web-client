@@ -4,7 +4,7 @@ import {FormField} from "../../../hooks/form/useFormField.ts";
 /**
  * Props for all selects
  */
-type MOLSelectProps<T> = {
+type CivorisSelectProps<T> = {
 
     /**
      * The form field
@@ -13,4 +13,4 @@ type MOLSelectProps<T> = {
 
 } & Partial<SelectProps>
 
-export default MOLSelectProps
+export default CivorisSelectProps

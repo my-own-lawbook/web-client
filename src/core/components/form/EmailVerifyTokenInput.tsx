@@ -1,11 +1,11 @@
 import {TextField} from "@mui/material";
-import MOLTextFieldProps from "./base/MOLTextFieldProps.ts";
+import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Component that preconfigures a text input for the email token
  */
-export default function EmailVerifyTokenInput(props: MOLTextFieldProps) {
+export default function EmailVerifyTokenInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (

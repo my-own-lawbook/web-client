@@ -2,13 +2,13 @@ import {IconButton, TextField} from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {useState} from "react";
-import MOLTextFieldProps from "./base/MOLTextFieldProps.ts";
+import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Component that preconfigures a text input for the password type
  */
-export default function PasswordFormInput(props: MOLTextFieldProps) {
+export default function PasswordFormInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     const [valueVisible, setValueVisible] = useState(false)

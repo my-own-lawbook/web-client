@@ -20,8 +20,8 @@ import {useForm1} from "../../../../core/hooks/form/useForm.ts";
 import MemberRoleSelect from "../../../../core/components/form/MemberRoleSelect.tsx";
 import ValuedMenuState from "../../../../core/states/ValuedMenuState.ts";
 import useMemberSection from "./useMemberSection.ts";
-import MOLDataGrid, {MOLDataGridHeaderItem} from "../../../../core/components/MOLDataGrid.tsx";
-import MOLDialog from "../../../../core/components/dialog/MOLDialog.tsx";
+import DataGrid, {DataGridHeaderItem} from "../../../../core/components/DataGrid.tsx";
+import CivorisDialog from "../../../../core/components/dialog/CivorisDialog.tsx";
 import {Trans, useTranslation} from "react-i18next";
 
 /**
@@ -104,7 +104,7 @@ function RemoveMemberDialog(
     const {t} = useTranslation()
 
     return (
-        <MOLDialog
+        <CivorisDialog
             dialogState={props.dialogState}
         >
             <DialogTitle>{t('book.member.dialog.remove.title')}</DialogTitle>
@@ -123,12 +123,12 @@ function RemoveMemberDialog(
             <DialogActions>
                 <Button onClick={props.onRemove}>{t('book.member.dialog.remove.confirm_button_label')}</Button>
             </DialogActions>
-        </MOLDialog>
+        </CivorisDialog>
     )
 }
 
 /**
- * Component that wraps and configures a MOLDataGrid to display the members
+ * Component that wraps and configures a DataGrid to display the members
  * @param props The props
  */
 function MemberGrid(
@@ -147,10 +147,10 @@ function MemberGrid(
     ]
 
     return (
-        <MOLDataGrid
+        <DataGrid
             headerNodes={headerItemsData.map(header => {
                     return {
-                        node: <MOLDataGridHeaderItem
+                        node: <DataGridHeaderItem
                             label={t(header.label)}
                             icon={header.icon}
                             key={header.label}
@@ -278,13 +278,13 @@ export default function BookDetailMemberSection(props: Readonly<BookDetailMember
                 onRemove={openRemoveDialog}
                 onChangeRole={openUpdateRoleDialog}
             />
-            <MOLDialog dialogState={updateRoleDialogState}>
+            <CivorisDialog dialogState={updateRoleDialogState}>
                 <ChooseMemberRoleDialogContent
                     dialogState={updateRoleDialogState}
                     canDowngradeFromAdmin={canRemoveOneAdmin}
                     onSelect={updateRole}
                 />
-            </MOLDialog>
+            </CivorisDialog>
             <RemoveMemberDialog
                 dialogState={removeMemberDialogState}
                 onRemove={removeUser}

@@ -1,4 +1,4 @@
-import MOLSelectProps from "./base/MOLSelectProps.ts";
+import CivorisSelectProps from "./base/CivorisSelectProps.ts";
 import ForeignUser from "../../model/ForeignUser.ts";
 import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
 import {formatName} from "../../formatting/stringFormatting.ts";
@@ -14,7 +14,7 @@ type UserSelectProps = {
      */
     selectableUsers: ForeignUser[] | null
 
-} & MOLSelectProps<ForeignUser | null>
+} & CivorisSelectProps<ForeignUser | null>
 
 /**
  * Component for a dropdown to select one of multiple users

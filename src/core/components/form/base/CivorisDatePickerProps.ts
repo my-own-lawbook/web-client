@@ -5,7 +5,7 @@ import {FormField} from "../../../hooks/form/useFormField.ts";
 /**
  * Props for all text field
  */
-type MOLDatePickerProps = {
+type CivorisDatePickerProps = {
 
     /**
      * The date form field
@@ -14,4 +14,4 @@ type MOLDatePickerProps = {
 
 } & Partial<DatePickerProps<Dayjs>>
 
-export default MOLDatePickerProps
+export default CivorisDatePickerProps

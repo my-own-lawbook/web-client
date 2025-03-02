@@ -1,12 +1,12 @@
 import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
-import MOLSelectProps from "./base/MOLSelectProps.ts"
+import CivorisSelectProps from "./base/CivorisSelectProps.ts"
 import {localizedRoleName, MemberRole} from "../../model/MemberRole.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Select component for selecting a member role
  */
-export default function MemberRoleSelect(props: MOLSelectProps<MemberRole>) {
+export default function MemberRoleSelect(props: CivorisSelectProps<MemberRole>) {
     const {t} = useTranslation()
 
     const roles = [MemberRole.Member, MemberRole.Moderator, MemberRole.Admin]

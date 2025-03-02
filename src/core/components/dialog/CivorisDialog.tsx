@@ -2,12 +2,12 @@ import ValuedDialogState from "../../states/ValuedDialogState.ts";
 import {Dialog, DialogProps, IconButton, styled} from "@mui/material";
 import {useEffect, useState} from "react";
 import {Close} from "@mui/icons-material";
-import './MOLDialog.css'
+import './CivorisDialog.css'
 
 /**
- * Props for the MOLDialog wrapper
+ * Props for the CivorisDialog wrapper
  */
-type MOLDialogProps<T> = {
+type CivorisDialogProps<T> = {
 
     /**
      * The dialog state to control the dialog
@@ -30,7 +30,7 @@ const StyledDialog = styled(Dialog)(({theme}) => ({
  * Dialog wrapper that configures the dialog and uses a dialogState
  * @param props The props
  */
-export default function MOLDialog<T>(props: MOLDialogProps<T>) {
+export default function CivorisDialog<T>(props: CivorisDialogProps<T>) {
     const [isVisible, setIsVisible] = useState(false)
 
     const {dialogState, children, ...dialogProps} = props

@@ -1,11 +1,11 @@
 import {InputAdornment, TextField} from "@mui/material";
-import MOLTextFieldProps from "./base/MOLTextFieldProps.ts";
+import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Component that preconfigures a text input for the email input type
  */
-export function SectionIndexInput(props: MOLTextFieldProps) {
+export function SectionIndexInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (
@@ -41,7 +41,7 @@ export function SectionIndexInput(props: MOLTextFieldProps) {
 /**
  * Component that preconfigures a text input for the email input type
  */
-export function SectionNameInput(props: MOLTextFieldProps) {
+export function SectionNameInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (
@@ -70,7 +70,7 @@ export function SectionNameInput(props: MOLTextFieldProps) {
 /**
  * Component that preconfigures a text input for the email input type
  */
-export function SectionContentInput(props: MOLTextFieldProps) {
+export function SectionContentInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (

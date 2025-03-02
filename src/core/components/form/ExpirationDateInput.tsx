@@ -1,12 +1,12 @@
 import {FormControl} from "@mui/material";
 import {DateTimePicker} from "@mui/x-date-pickers";
-import MOLDateTimePickerProps from "./base/MOLDateTimePickerProps.ts";
+import CivorisDateTimePickerProps from "./base/CivorisDateTimePickerProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Date picker configured for a birthday
  */
-export default function ExpirationDateInput(props: MOLDateTimePickerProps) {
+export default function ExpirationDateInput(props: CivorisDateTimePickerProps) {
     const {t} = useTranslation()
 
     return (

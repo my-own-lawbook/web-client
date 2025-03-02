@@ -1,5 +1,5 @@
 import ValuedDialogState from "../../states/ValuedDialogState.ts";
-import MOLDialog from "./MOLDialog.tsx";
+import CivorisDialog from "./CivorisDialog.tsx";
 import {Trans, useTranslation} from "react-i18next";
 import {Button, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
@@ -39,7 +39,7 @@ export default function DeleteConfirmationDialog<T>(props: Readonly<DeleteConfir
     const {t} = useTranslation()
 
     return (
-        <MOLDialog
+        <CivorisDialog
             dialogState={props.dialogState}
         >
             <DialogTitle>{t('components.dialog.delete_confirmation.title', {type: props.elementName})}</DialogTitle>
@@ -62,6 +62,6 @@ export default function DeleteConfirmationDialog<T>(props: Readonly<DeleteConfir
                     </Button>
                 </DialogActions>
             </DialogContent>
-        </MOLDialog>
+        </CivorisDialog>
     )
 }

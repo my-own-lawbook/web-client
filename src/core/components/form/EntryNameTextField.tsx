@@ -1,11 +1,11 @@
 import {TextField} from "@mui/material";
-import MOLTextFieldProps from "./base/MOLTextFieldProps.ts";
+import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Component that preconfigures a text input for the entry name input type
  */
-export function EntryNameTextField(props: MOLTextFieldProps) {
+export function EntryNameTextField(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (
@@ -32,7 +32,7 @@ export function EntryNameTextField(props: MOLTextFieldProps) {
 /**
  * Component that preconfigures a text input for the short entry name input type
  */
-export function ShortEntryNameTextField(props: MOLTextFieldProps) {
+export function ShortEntryNameTextField(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (

@@ -1,11 +1,11 @@
 import {TextField} from "@mui/material";
-import MOLTextFieldProps from "./base/MOLTextFieldProps.ts";
+import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
  * Component that preconfigures a text input for the username input type
  */
-export default function UsernameFormInput(props: MOLTextFieldProps) {
+export default function UsernameFormInput(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (

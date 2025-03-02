@@ -1,12 +1,12 @@
 import Gender, {genderDisplayName} from "../../model/Gender.ts";
 import {FormControl, FormHelperText, InputLabel, MenuItem, Select} from "@mui/material";
-import MOLSelectProps from "./base/MOLSelectProps.ts"
+import CivorisSelectProps from "./base/CivorisSelectProps.ts"
 import {useTranslation} from "react-i18next";
 
 /**
  * Select component for selecting a gender
  */
-export default function GenderSelect(props: MOLSelectProps<Gender | null>) {
+export default function GenderSelect(props: CivorisSelectProps<Gender | null>) {
     const {t} = useTranslation()
 
     const genders = [Gender.Male, Gender.Female, Gender.Other, Gender.Private]

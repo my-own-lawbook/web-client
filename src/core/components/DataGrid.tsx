@@ -1,6 +1,6 @@
 import {PropsWithChildren, ReactNode} from "react";
 import {Box, Typography} from "@mui/material";
-import './MOLDataGrid.css'
+import './DataGrid.css'
 
 /**
  * Defines attributes needed for an item
@@ -15,9 +15,9 @@ interface HasId {
 }
 
 /**
- * Props for the MOLDataGrid component
+ * Props for the DataGrid component
  */
-type MOLDataGridProps<T extends HasId> = {
+type DataGridProps<T extends HasId> = {
 
     /**
      *
@@ -40,7 +40,7 @@ type MOLDataGridProps<T extends HasId> = {
 /**
  * Props for a header item
  */
-type MOLDataGridHeaderItemProps = {
+type DataGridHeaderItemProps = {
 
     /**
      * The label
@@ -58,7 +58,7 @@ type MOLDataGridHeaderItemProps = {
  * Component for a single header item in the header row of a data grid
  * @param props The props
  */
-export function MOLDataGridHeaderItem(props: Readonly<MOLDataGridHeaderItemProps>) {
+export function DataGridHeaderItem(props: Readonly<DataGridHeaderItemProps>) {
     return (
         <Box className="data-grid-header-item">
             {props.icon ? props.icon : null}
@@ -67,13 +67,13 @@ export function MOLDataGridHeaderItem(props: Readonly<MOLDataGridHeaderItemProps
     )
 }
 
-function MOLDataGridSection(props: Readonly<PropsWithChildren>) {
+function DataGridSection(props: Readonly<PropsWithChildren>) {
     return (
         <Box className="data-grid-section" children={props.children}/>
     )
 }
 
-function MOLDataGridRow(props: Readonly<PropsWithChildren>) {
+function DataGridRow(props: Readonly<PropsWithChildren>) {
     return (
         <Box className="data-grid-row" children={props.children}/>
     )
@@ -83,25 +83,25 @@ function MOLDataGridRow(props: Readonly<PropsWithChildren>) {
  * Component to structure an array of items in a grid-way
  * @param props The props
  */
-export default function MOLDataGrid<T extends HasId>(props: Readonly<MOLDataGridProps<T>>) {
+export default function DataGrid<T extends HasId>(props: Readonly<DataGridProps<T>>) {
     const rowNodes = props.items.map(item => {
         return {nodes: props.rowNodes(item), id: item.id}
     })
     const rows = rowNodes.map(rns => {
         const sections = rns.nodes.map(node => {
-            return <MOLDataGridSection children={node.node} key={node.fieldName}/>
+            return <DataGridSection children={node.node} key={node.fieldName}/>
         })
-        return <MOLDataGridRow children={sections} key={rns.id}/>
+        return <DataGridRow children={sections} key={rns.id}/>
     })
 
     // noinspection com.intellij.reactbuddy.ArrayToJSXMapInspection
     return (
         <Box className="data-grid">
-            <MOLDataGridRow
+            <DataGridRow
             >
-                {props.headerNodes.map(headerNode => <MOLDataGridSection children={headerNode.node}
+                {props.headerNodes.map(headerNode => <DataGridSection children={headerNode.node}
                                                                                   key={headerNode.id}/>)}
-            </MOLDataGridRow>
+            </DataGridRow>
 
             {rows}
         </Box>

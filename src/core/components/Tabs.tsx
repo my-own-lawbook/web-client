@@ -1,10 +1,10 @@
 import {ButtonBase, Paper, Typography} from "@mui/material";
-import './MOLTabs.css'
+import './Tabs.css'
 
 /**
- * Props for the MOLTabs component
+ * Props for the Tabs component
  */
-type MOLTabsProps<T> = {
+type TabsProps<T> = {
 
     /**
      * The possible tab destinations
@@ -35,7 +35,7 @@ type MOLTabsProps<T> = {
 
 }
 
-function MOLTab(
+function Tab(
     props: Readonly<{
         display: string,
         selected: boolean,
@@ -62,11 +62,11 @@ function MOLTab(
  * Component for displaying a lightweight tab row
  * @param props The props
  */
-export default function MOLTabs<T>(props: Readonly<MOLTabsProps<T>>) {
+export default function Tabs<T>(props: Readonly<TabsProps<T>>) {
     return (
         <Paper elevation={4} className="tabs">
             {props.tabs.map(tab => {
-                return <MOLTab
+                return <Tab
                     key={JSON.stringify(tab)}
                     selected={tab == props.selected}
                     display={props.localizedValueOf(tab)}

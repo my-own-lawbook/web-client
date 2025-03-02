@@ -6,7 +6,7 @@ import EntryListItem from "../../../../core/components/entry/EntryListItem.tsx";
 import {MemberRole} from "../../../../core/model/MemberRole.ts";
 import {useTranslation} from "react-i18next";
 import EmptyListNotice from "../../../../core/components/EmptyListNotice.tsx";
-import MOLDialog from "../../../../core/components/dialog/MOLDialog.tsx";
+import CivorisDialog from "../../../../core/components/dialog/CivorisDialog.tsx";
 import CreateEntryDialogContent from "./CreateEntryDialogContent.tsx";
 import ValuedDialogState from "../../../../core/states/ValuedDialogState.ts";
 import Book from "../../../../core/model/Book.ts";
@@ -268,23 +268,23 @@ export default function BookDetailContentSection(props: Readonly<BookDetailConte
               * Modal dialogs and menus
               */}
 
-            <MOLDialog
+            <CivorisDialog
                 dialogState={createEntryDialogState}
             >
                 <CreateEntryDialogContent
                     dialogState={createEntryDialogState}
                     refreshEntries={props.refreshEntries}
                 />
-            </MOLDialog>
+            </CivorisDialog>
 
-            <MOLDialog
+            <CivorisDialog
                 dialogState={createSectionDialogState}
             >
                 <CreateSectionDialogContent
                     dialogState={createSectionDialogState}
                     refreshSections={props.refreshSections}
                 />
-            </MOLDialog>
+            </CivorisDialog>
 
             <EntrySettingsMenu
                 menuState={entryMenuState}

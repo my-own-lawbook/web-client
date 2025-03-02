@@ -4,7 +4,7 @@ import {FormField} from "../../../hooks/form/useFormField.ts";
 /**
  * Props for all text field
  */
-type MOLTextFieldProps = {
+type CivorisTextFieldProps = {
 
     /**
      * The form field data
@@ -13,4 +13,4 @@ type MOLTextFieldProps = {
 
 } & Partial<TextFieldProps>
 
-export default MOLTextFieldProps
+export default CivorisTextFieldProps

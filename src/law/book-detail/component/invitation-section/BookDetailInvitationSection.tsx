@@ -1,6 +1,6 @@
 import Invitation from "../../../../core/model/Invitation.ts";
 import {localizedRoleName, MemberRole} from "../../../../core/model/MemberRole.ts";
-import MOLDataGrid, {MOLDataGridHeaderItem} from "../../../../core/components/MOLDataGrid.tsx";
+import DataGrid, {DataGridHeaderItem} from "../../../../core/components/DataGrid.tsx";
 import {AccessTime, Chat, MoreVert, Person, Security, Settings, Warning} from "@mui/icons-material";
 import {Box, Button, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import {formatName} from "../../../../core/formatting/stringFormatting.ts";
@@ -9,7 +9,7 @@ import ValuedMenuState from "../../../../core/states/ValuedMenuState.ts";
 import EmptyListNotice from "../../../../core/components/EmptyListNotice.tsx";
 import CreateInvitationDialogContent from "./CreateInvitationDialogContent.tsx";
 import Book from "../../../../core/model/Book.ts";
-import MOLDialog from "../../../../core/components/dialog/MOLDialog.tsx";
+import CivorisDialog from "../../../../core/components/dialog/CivorisDialog.tsx";
 import {useTranslation} from "react-i18next";
 import './BookDetailInvitationSection.css'
 
@@ -69,10 +69,10 @@ function InvitationGrid(
     ]
 
     return (
-        <MOLDataGrid
+        <DataGrid
             headerNodes={headerItemsData.map(header => {
                     return {
-                        node: <MOLDataGridHeaderItem
+                        node: <DataGridHeaderItem
                             label={t(header.label)}
                             icon={header.icon}
                             key={header.label}
@@ -252,13 +252,13 @@ export default function BookDetailInvitationSection(props: Readonly<BookDetailIn
                 }}
             />
 
-            <MOLDialog dialogState={createInvitationDialogState}>
+            <CivorisDialog dialogState={createInvitationDialogState}>
                 <CreateInvitationDialogContent
                     book={props.book}
                     refreshInvitations={props.refreshInvitations}
                     dialogState={createInvitationDialogState}
                 />
-            </MOLDialog>
+            </CivorisDialog>
         </Box>
     )
 }

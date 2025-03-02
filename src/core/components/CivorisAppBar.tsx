@@ -1,13 +1,13 @@
 import {Box, ButtonBase, Chip, Menu, MenuItem, Stack, Typography, useTheme} from "@mui/material";
-import './MOLAppBar.css'
+import './CivorisAppBar.css'
 import {useTranslation} from "react-i18next";
 import {useAuth} from "../useAuth.ts";
 import ValuedMenuState, {useMenuState} from "../states/ValuedMenuState.ts";
 
 /**
- * Props for the MOLAppBar
+ * Props for the CivorisAppBarProps
  */
-type MOLAppBarProps = {
+type CivorisAppBarProps = {
 
     /**
      * Callback for when the user clicks on the logo
@@ -65,10 +65,10 @@ function UserMenu(
 }
 
 /**
- * The MOLAppBar
+ * The CivorisAppBar
  * @param props The props
  */
-export default function MOLAppBar(props: Readonly<MOLAppBarProps>) {
+export default function CivorisAppBar(props: Readonly<CivorisAppBarProps>) {
     const auth = useAuth()
 
     const menuState = useMenuState<void>()
@@ -158,7 +158,7 @@ function HostInformation(
 }
 
 /**
- * The logo component that renders the MOL-Logo
+ * The logo component that renders the Civoris-Logo
  * @constructor
  */
 function Logo(

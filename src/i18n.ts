@@ -209,7 +209,7 @@ await i18next
                                 host_label: "Current host:"
                             },
                             logo: {
-                                logo_alt: "MOL-Logo"
+                                logo_alt: "Civoris-Logo"
                             },
                             menu: {
                                 profile_label: "Profile",
@@ -534,7 +534,7 @@ await i18next
                                 host_label: "Aktueller Server:"
                             },
                             logo: {
-                                logo_alt: "MOL-Logo"
+                                logo_alt: "Civoris-Logo"
                             },
                             menu: {
                                 profile_label: "Account",

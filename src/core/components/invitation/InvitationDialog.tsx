@@ -7,7 +7,7 @@ import './InvitationDialog.css'
 import {Dayjs} from "dayjs";
 import {localizedRoleName, MemberRole} from "../../model/MemberRole.ts";
 import ValuedDialogState from "../../states/ValuedDialogState.ts";
-import MOLDialog from "../dialog/MOLDialog.tsx";
+import CivorisDialog from "../dialog/CivorisDialog.tsx";
 import {Trans, useTranslation} from "react-i18next";
 
 /**
@@ -153,7 +153,7 @@ export default function InvitationDialog(props: Readonly<InvitationDialogProps>)
     const {t} = useTranslation()
 
     return (
-        <MOLDialog
+        <CivorisDialog
             dialogState={props.dialogState}
         >
             <DialogTitle>{t('components.dialog.invitation.title', {name: props.dialogState.data?.targetBook.name ?? ''})}</DialogTitle>
@@ -178,6 +178,6 @@ export default function InvitationDialog(props: Readonly<InvitationDialogProps>)
                     {t('components.dialog.invitation.accept_button_label')}
                 </Button>
             </DialogActions>
-        </MOLDialog>
+        </CivorisDialog>
     )
 }

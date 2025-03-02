@@ -3,7 +3,7 @@ import {Stack, Typography, useTheme} from "@mui/material";
 /**
  * The props for the CivorisFooter component
  */
-type MOLFooterProps = {
+type CivorisFooterProps = {
 
     /**
      * Handles the user clicking on the legal info
@@ -53,7 +53,7 @@ function FooterLink(
  * The Footer used in all civoris screens
  * @params props The props
  */
-export default function CivorisFooter(props: Readonly<MOLFooterProps>) {
+export default function CivorisFooter(props: Readonly<CivorisFooterProps>) {
     const theme = useTheme()
 
     return (

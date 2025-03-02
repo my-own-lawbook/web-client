@@ -1,5 +1,5 @@
 import {Box} from "@mui/material";
-import MOLAppBar from "../components/MOLAppBar.tsx";
+import CivorisAppBar from "../components/CivorisAppBar.tsx";
 import CivorisFooter from "../components/CivorisFooter.tsx";
 import {PropsWithChildren} from "react";
 import {useNavigate} from "react-router-dom";
@@ -25,7 +25,7 @@ export default function PageWrapper(props: Readonly<PropsWithChildren>) {
         <Box
             className="page-wrapper"
         >
-            <MOLAppBar
+            <CivorisAppBar
                 onGoHome={navigateHome}
                 onLogout={logout}
                 onLogoutAll={logoutAll}

@@ -5,7 +5,7 @@ import Book from "../../core/model/Book.ts";
 import BookMember from "../../core/model/BookMember.ts";
 import Entry from "../../core/model/Entry.ts";
 import Section from "../../core/model/Section.ts";
-import MOLTabs from "../../core/components/MOLTabs.tsx";
+import Tabs from "../../core/components/Tabs.tsx";
 import BookDetailMemberSection from "./component/member-section/BookDetailMemberSection.tsx";
 import {MemberRole} from "../../core/model/MemberRole.ts";
 import MaybeVisible from "../../core/components/MaybeVisible.tsx";
@@ -98,7 +98,7 @@ export default function BookDetailScreen() {
                 <MaybeVisible
                     apiResult={memberRole}
                     content={state =>
-                        <MOLTabs
+                        <Tabs
                             tabs={[BookDetailTab.Content, BookDetailTab.Members, BookDetailTab.Invitations]}
                             enabled={tab => tab == BookDetailTab.Invitations ? state.valueOf() >= MemberRole.Moderator.valueOf() : true}
                             selected={selectedTab}
