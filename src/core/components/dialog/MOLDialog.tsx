@@ -51,7 +51,7 @@ export default function MOLDialog<T>(props: MOLDialogProps<T>) {
             <StyledDialog
                 open={dialogState.isOpen}
                 onClose={onClose}
-                className="mol-dialog"
+                className="civoris-dialog"
 
                 {...dialogProps}
             >

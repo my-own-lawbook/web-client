@@ -1,5 +1,6 @@
-# MOL Web App
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=my-own-lawbook_web-client&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=my-own-lawbook_web-client) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=my-own-lawbook_web-client&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=my-own-lawbook_web-client) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=my-own-lawbook_web-client&metric=coverage)](https://sonarcloud.io/summary/new_code?id=my-own-lawbook_web-client)
+# Civoris Web App
+
+[![Quality Gate Status](https://sonar.bumiller.me/api/project_badges/measure?project=civoris_web-client_c89ee087-026c-4578-b835-32b544f0b642&metric=alert_status&token=sqb_3f2cf2d7be6feee5a3ee8bbf211b732bfadebcbe)](https://sonar.bumiller.me/dashboard?id=civoris_web-client_c89ee087-026c-4578-b835-32b544f0b642) [![Lines of Code](https://sonar.bumiller.me/api/project_badges/measure?project=civoris_web-client_c89ee087-026c-4578-b835-32b544f0b642&metric=ncloc&token=sqb_3f2cf2d7be6feee5a3ee8bbf211b732bfadebcbe)](https://sonar.bumiller.me/dashboard?id=civoris_web-client_c89ee087-026c-4578-b835-32b544f0b642)
 
 This is the repository for the web app to connect to the MOL-Server.
 
@@ -29,7 +30,7 @@ file to run the client. `host_port` is a placeholder for the port the docker con
 ```yaml
 services:
   web-app:
-    image: ghcr.io/my-own-lawbook/web-client:<version>
+    image: ghcr.io/civoris/web-client:<version>
     ports:
       "<host_port>:80"
     environment:

@@ -1,7 +1,7 @@
 import {Stack, Typography, useTheme} from "@mui/material";
 
 /**
- * The props for the MOLFooter component
+ * The props for the CivorisFooter component
  */
 type MOLFooterProps = {
 
@@ -50,10 +50,10 @@ function FooterLink(
 }
 
 /**
- * The Footer used in all mol screens
+ * The Footer used in all civoris screens
  * @params props The props
  */
-export default function MOLFooter(props: Readonly<MOLFooterProps>) {
+export default function CivorisFooter(props: Readonly<MOLFooterProps>) {
     const theme = useTheme()
 
     return (
@@ -71,7 +71,7 @@ export default function MOLFooter(props: Readonly<MOLFooterProps>) {
                 borderTop: `${theme.palette.grey["300"]} 1px solid`
             }}
         >
-            <FooterLink text={"About MOL"} onClick={props.onAboutClick}/>
+            <FooterLink text={"About Civoris"} onClick={props.onAboutClick}/>
             <FooterLink text={"Legal notice"} onClick={props.onLegalClick}/>
             <FooterLink text={"About host"} onClick={props.onHostInfoClick}/>
         </Stack>

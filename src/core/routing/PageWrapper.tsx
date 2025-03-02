@@ -1,6 +1,6 @@
 import {Box} from "@mui/material";
 import MOLAppBar from "../components/MOLAppBar.tsx";
-import MOLFooter from "../components/MOLFooter.tsx";
+import CivorisFooter from "../components/CivorisFooter.tsx";
 import {PropsWithChildren} from "react";
 import {useNavigate} from "react-router-dom";
 import './PageWrapper.css'
@@ -36,7 +36,7 @@ export default function PageWrapper(props: Readonly<PropsWithChildren>) {
                 {props.children}
             </Box>
 
-            <MOLFooter
+            <CivorisFooter
                 onLegalClick={() => {
                 }}
                 onAboutClick={() => {

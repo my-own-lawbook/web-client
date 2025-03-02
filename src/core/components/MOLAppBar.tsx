@@ -77,7 +77,7 @@ export default function MOLAppBar(props: Readonly<MOLAppBarProps>) {
     const host = window.__APP_CONFIG__.VITE_API_URL!
     return (
         <Box
-            className="mol-app-bar"
+            className="civoris-app-bar"
         >
             <HostInformation host={host}/>
             <Logo onClick={props.onGoHome}/>

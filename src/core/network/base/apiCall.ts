@@ -155,7 +155,7 @@ function createResultFromException<T>(error: unknown): ApiResult<T> {
 const baseUrl = window.__APP_CONFIG__.VITE_API_URL
 
 /**
- * Basic call to the mol-rest-api
+ * Basic call to the civoris-rest-api
  * @param path The relative path to request to
  * @param body The optional payload
  * @param method The http method
@@ -164,7 +164,6 @@ const baseUrl = window.__APP_CONFIG__.VITE_API_URL
  */
 export default async function apiCall<T>(path: string, body?: unknown, method: string = "get", authHeader: string | null = null): Promise<ApiResult<T>> {
     const url = baseUrl + path
-    console.log(`Making api call to ${url} with base url ${baseUrl}`)
 
     try {
         const response = await axios.request<T>({
@@ -186,7 +185,7 @@ export default async function apiCall<T>(path: string, body?: unknown, method: s
 }
 
 /**
- * Authenticated api call to the mol-api.
+ * Authenticated api call to the civoris-api.
  *
  * If the request fails because of an authentication issue, the /auth/login/refresh/ endpoint is hit to refresh the access token. If the request still fails, that is returned.
  *
