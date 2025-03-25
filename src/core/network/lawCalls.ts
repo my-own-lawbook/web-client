@@ -134,6 +134,40 @@ export async function createEntryApiCall(name: string, key: string, bookId: numb
 }
 
 /**
+ * Creates a new book.
+ *
+ * @param name The name of the book
+ * @param key The key of the book
+ * @param description The description of the book
+ */
+export async function createBookApiCall(name: string, key: string, description: string): Promise<ApiResult<Book>> {
+    const response = await authenticatedApiCall<BookResponse>(
+        `/law-books/`,
+        {name: name, key: key, description: description},
+        'post'
+    )
+
+    return response.map(mapBook)
+}
+
+/**
+ * Updates a specific book
+ * @param id The id of the book
+ * @param key The new key
+ * @param name The new name
+ * @param description The new description
+ */
+export async function updateBookApiCall(id: number, key?: string, name?: string, description?: string): Promise<ApiResult<Entry>> {
+    const response = await authenticatedApiCall<EntryResponse>(
+        `/law-books/${id}/`,
+        {key: key, name: name, description: description},
+        'patch'
+    )
+
+    return response.map(mapEntry)
+}
+
+/**
  * Updates a specific entry
  * @param id The id of the entry
  * @param key The new key

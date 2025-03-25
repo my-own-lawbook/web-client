@@ -3,26 +3,25 @@ import CivorisTextFieldProps from "./base/CivorisTextFieldProps.ts";
 import {useTranslation} from "react-i18next";
 
 /**
- * Component that preconfigures a text input for the email token
+ * Component that preconfigures a text input for the book key input
  */
-export default function EmailVerifyTokenInput(props: CivorisTextFieldProps) {
+export default function BookKeyTextField(props: CivorisTextFieldProps) {
     const {t} = useTranslation()
 
     return (
         <TextField
             {...props}
-            id="email-token"
-            name="email-token"
-            type="number"
+            id="book_key"
+            type="text"
 
-            label={t('components.input.email_token.label')}
-            placeholder={t('components.input.email_token.placeholder')}
+            label={t('components.input.book_key.label')}
+            placeholder={t('components.input.book_key.placeholder')}
 
-            sx={{mt: '4px'}}
+            sx={{mt: '16px', width: '30%'}}
 
             value={props.field.input.value}
             onChange={(e) => props.field.set(e.target.value)}
-            variant="filled"
+            variant="outlined"
 
             helperText={props.field.input.error ? t(props.field.input.error) : null}
             error={props.field.input.error != null}

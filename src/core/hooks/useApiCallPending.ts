@@ -7,14 +7,15 @@ import {ApiResult} from "../network/base/apiCall.ts";
  * @param apiCall The call resulting in the ApiResult
  * @param doLoading If the call should only be simulated and set to loading
  */
-const useApiCallPending = <T>(apiCall: () => Promise<ApiResult<T>>, doLoading?: boolean): PendingApiResult<T> => {
+const useApiCallPending = <T>(apiCall: () => Promise<ApiResult<T>>, doLoading?: boolean, keys?: readonly unknown[]): PendingApiResult<T> => {
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState<boolean | null>(null)
     const [data, setData] = useState<T | null>(null)
 
+    const additionalKeys = keys ?? []
     // For some reason, apiCall is seen as new every render.
     // eslint-disable-next-line
-    const memoizedApiCall = useCallback(apiCall, [doLoading]);
+    const memoizedApiCall = useCallback(apiCall, [doLoading, ...additionalKeys]);
 
     const updateData = () => {
         const fetch = async () => {

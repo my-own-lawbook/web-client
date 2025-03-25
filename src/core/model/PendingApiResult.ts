@@ -43,6 +43,15 @@ class PendingApiResult<T> {
         this.refreshSilent = refreshSilent
     }
 
+    /**
+     * Maps the value of this api result to another.
+     *
+     * @param mapper The conversion function
+     */
+    map<R>(mapper: (value: T) => R): PendingApiResult<R> {
+        return new PendingApiResult(this.isLoading, this.isError, this.isFinishedSuccess, this.data == null ? null : mapper(this.data), this.refresh, this.refreshSilent)
+    }
+
     resolve<R>(resolver: (value: T) => R, defaultValue: R): R {
         return this.data == null ? defaultValue : resolver(this.data);
     }

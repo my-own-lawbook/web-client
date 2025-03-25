@@ -36,14 +36,7 @@ export default function PageWrapper(props: Readonly<PropsWithChildren>) {
                 {props.children}
             </Box>
 
-            <CivorisFooter
-                onLegalClick={() => {
-                }}
-                onAboutClick={() => {
-                }}
-                onHostInfoClick={() => {
-                }}
-            />
+            <CivorisFooter/>
         </Box>
     )
 }

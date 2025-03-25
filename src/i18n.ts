@@ -61,8 +61,13 @@ await i18next
                         sections: {
                             books: {
                                 title: "Your Law Books",
+                                new_book_label: "Create Book",
                                 description: {
-                                    empty: "You don't seem to have access to any law-books at the moment. Create a book yourself or be invited to one!",
+                                    empty: {
+                                        pre: "You don't seem to have access to any law-books at the moment. ",
+                                        clickable: "Create a book yourself",
+                                        post: " or be invited to one!"
+                                    },
                                     existing: "Below is a list of all law-books that you have access to. To get a more detailed view of each book, click on it."
                                 }
                             },
@@ -224,13 +229,25 @@ await i18next
                             birthday: {
                                 label: "Birthday"
                             },
+                            book_name: {
+                                label: "Name",
+                                placeholder: ""
+                            },
+                            book_key: {
+                                label: "Shorthand",
+                                placeholder: ""
+                            },
+                            book_description: {
+                                label: "Description",
+                                placeholder: ""
+                            },
                             email: {
                                 label: "Email",
                                 placeholder: "user@domain.com"
                             },
                             email_token: {
-                                label: "Token",
-                                placeholder: "570c53cd-e102-4287-ae38-e22e0ee73f23"
+                                label: "One-Time-Password",
+                                placeholder: "869249"
                             },
                             expiration: {
                                 label: "Expiration date"
@@ -298,12 +315,18 @@ await i18next
                                 title: "Confirm deletion of {{type}}",
                                 description: "You are about to delete <1>{{identifier}}</1>! This action is permanent and cannot be undone!",
                                 confirm_button_label: "Confirm deletion"
+                            },
+                            add_book: {
+                                title: "Add book",
+                                confirm_button_label: "Confirm",
+                                description: "To add a custom law-book, enter your values in the following."
                             }
                         }
                     },
                     validation: {
                         format: {
                             email: "Please enter a valid email address",
+                            name: "A name can only consist of characters and digits, minimum length 4.",
                             password: "A password must contain at least eight uppercase and lowercase letters, digits and special characters.",
                             profile_name: "A name can only contain letters and whitespaces.",
                             date_past: "Please select a date in the past",
@@ -327,6 +350,9 @@ await i18next
                             },
                             entry: {
                                 key_not_unique: "An entry with that key already exists in this book!"
+                            },
+                            book: {
+                                key_not_unique: "A law-book with that key already exists."
                             },
                             section: {
                                 index_not_unique: "A section with that index already exists in this entry!"
@@ -386,8 +412,13 @@ await i18next
                         sections: {
                             books: {
                                 title: "Deine Gesetzesbücher",
+                                new_book_label: "Buch erstellen",
                                 description: {
-                                    empty: "Du scheint noch keinen Zugriff auf ein Gesetzesbuch zu haben! Erstelle eines, oder warte, bis jemand dich einlädt.",
+                                    empty: {
+                                        pre: "Du scheint noch keinen Zugriff auf ein Gesetzesbuch zu haben! ",
+                                        clickable: "Erstelle eines",
+                                        post: ", oder warte, bis jemand dich einlädt."
+                                    },
                                     existing: "Hier siehst du eine Liste aller Gesetzesbücher auf die du Zugriff hast. Um ausführlichere infos zu sehen, klicke auf die entsprechende Karte."
                                 }
                             },
@@ -549,13 +580,25 @@ await i18next
                             birthday: {
                                 label: "Geburtstag"
                             },
+                            book_name: {
+                                label: "Buchname",
+                                placeholder: "Strafgesetzbuch"
+                            },
+                            book_key: {
+                                label: "Kurzform",
+                                placeholder: "StGB"
+                            },
+                            book_description: {
+                                label: "Beschreibung",
+                                placeholder: ""
+                            },
                             email: {
                                 label: "Email",
                                 placeholder: "benutzer@server.com"
                             },
                             email_token: {
                                 label: "Einmalpasswort",
-                                placeholder: "570c53cd-e102-4287-ae38-e22e0ee73f23"
+                                placeholder: "357532"
                             },
                             expiration: {
                                 label: "Ablaufdatum"
@@ -623,12 +666,18 @@ await i18next
                                 title: "Löschen von {{type}} bestätigen",
                                 description: "Du bist dabei, <1>{{identifier}}</1> zu löschen. Diese Aktion ist permanent und kann nicht rüchgängig gemacht werden!",
                                 confirm_button_label: "Löschen bestätigen"
+                            },
+                            add_book: {
+                                title: "Buch hinzufügen",
+                                confirm_button_label: "Bestätigen",
+                                description: "Um ein eigenes Buch zu erstellen, gebe im folgenden Formular die passenden Werte ein."
                             }
                         }
                     },
                     validation: {
                         format: {
                             email: "Bitte gebe eine Email Addresse ein",
+                            name: "Ein Name kann nur aus Buchstaben und Zahlen bestehen, Mindestlänge 4.",
                             password: "Ein Passwort muss mindestends acht Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen beinhalten.",
                             profile_name: "Ein Name kann nur Buchstaben oder Leerzeichen beinhalten",
                             date_past: "Bitte wähle ein Datum in der Vergangenheit",
@@ -652,6 +701,9 @@ await i18next
                             },
                             entry: {
                                 key_not_unique: "Ein Gesetz mit der selben Kurzform existiert bereits in diesem Gesetzesbuch!"
+                            },
+                            book: {
+                                key_not_unique: "Ein Gesetzbuch mit derselben Kurzform existiert bereits."
                             },
                             section: {
                                 index_not_unique: "Ein Paragraph mit derselben Prargraphenzahl existiert bereist in diesem Gesetz!!"

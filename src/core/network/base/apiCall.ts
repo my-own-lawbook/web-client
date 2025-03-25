@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import {getAccessToken, getRefreshToken} from "../../storage/tokens.ts";
 import {refreshApiCall} from "../authCalls.ts";
+import appConfig from "../../../appConfig.ts";
 
 /**
  * Response from any api
@@ -151,8 +152,7 @@ function createResultFromException<T>(error: unknown): ApiResult<T> {
     }
 }
 
-// @ts-expect-error Needed for environment variables
-const baseUrl = window.__APP_CONFIG__.VITE_API_URL
+const baseUrl = appConfig.apiBaseUrl
 
 /**
  * Basic call to the civoris-rest-api
@@ -176,10 +176,8 @@ export default async function apiCall<T>(path: string, body?: unknown, method: s
             }
         })
 
-        console.debug(`Got axios response ${JSON.stringify(response)}`)
         return createResultFromResponse(response)
     } catch (e) {
-        console.debug(`Got axios error ${JSON.stringify(e)}`)
         return createResultFromException(e)
     }
 }

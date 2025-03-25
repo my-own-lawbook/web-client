@@ -19,6 +19,11 @@ type UseHomeScreen = {
     invitationDialogState: ValuedDialogState<Invitation>,
 
     /**
+     * The dialog state for the add book dialog
+     */
+    addBookDialogState: ValuedDialogState<Book | null>,
+
+    /**
      * The books
      */
     books: PendingApiResponse<Book[]>,
@@ -49,6 +54,11 @@ type UseHomeScreen = {
      * Whether the deny-invitation call is loading
      */
     denyInvitationLoading: boolean,
+
+    /**
+     * Refreshes the books
+     */
+    refreshBooks: () => Promise<void>
 
 }
 
@@ -89,15 +99,19 @@ const useHomeScreen = (): UseHomeScreen => {
     const auth = useAuth()
 
     const invitationDialogState = useDialogState<Invitation>(false)
+    const addBookDialogState = useDialogState<Book | null>(false)
 
     const [isAcceptLoading, setIsAcceptLoading] = useState(false);
     const [isDenyLoading, setIsDenyLoading] = useState(false);
 
-    const books = useApiCallPending(() => fetchUserBooks())
+    const books = useApiCallPending(() => fetchUserBooks()).map(books =>
+        books.filter(book => book.isMemberOf))
+
     const invitations = useApiCallPending(() => fetchInvitations({onlyInvitedBy: auth.authenticatedUser!.id}))
 
     return {
         invitationDialogState,
+        addBookDialogState,
         books,
         invitations,
         async acceptInvitation(id: number): Promise<void> {
@@ -113,7 +127,10 @@ const useHomeScreen = (): UseHomeScreen => {
             books.refresh()
             invitations.refresh()
         },
-        denyInvitationLoading: isDenyLoading
+        denyInvitationLoading: isDenyLoading,
+        async refreshBooks(): Promise<void> {
+            books.refreshSilent()
+        }
     }
 }
 

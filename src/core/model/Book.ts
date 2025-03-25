@@ -21,7 +21,12 @@ type Book = {
     /**
      * The description
      */
-    description: string
+    description: string,
+
+    /**
+     * Whether the user is a member of the book, or only has access to it due to an invitation
+     */
+    isMemberOf: boolean
 
 }
 

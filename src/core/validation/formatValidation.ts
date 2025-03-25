@@ -69,14 +69,28 @@ export function validateInFuture(date: Dayjs | null): string | null {
  * Validates a username
  * Requirements:
  * - Only alphanumeric, digits and underscores
- * - Min length 4, max length 20
+ * - Min length 8, max length 20
  * @param username The user entered username
  */
 export function validateUsername(username: string): string | null {
-    const regex = /^\w{4,20}$/
+    const regex = /^\w{8,20}$/
 
     if (regex.test(username)) return null
     else return "validation.format.username"
+}
+
+/**
+ * Validates a general name, e.g. for the title of a law-book.
+ *
+ * - Only alphanumerical values
+ * - Min length 4, max length 256
+ * @param string
+ */
+export function validateValidName(string: string): string | null {
+    const regex = /^[a-zA-Z0-9üÜäÄöÖß ]{1,256}$/
+
+    if (regex.test(string)) return null
+    else return "validation.format.name"
 }
 
 export function validateNotBlank(string: string, errorMsg: string | null = null): string | null {
