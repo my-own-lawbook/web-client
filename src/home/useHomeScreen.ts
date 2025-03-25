@@ -93,7 +93,9 @@ const useHomeScreen = (): UseHomeScreen => {
     const [isAcceptLoading, setIsAcceptLoading] = useState(false);
     const [isDenyLoading, setIsDenyLoading] = useState(false);
 
-    const books = useApiCallPending(() => fetchUserBooks())
+    const books = useApiCallPending(() => fetchUserBooks()).map(books =>
+        books.filter(book => book.isMemberOf))
+
     const invitations = useApiCallPending(() => fetchInvitations({onlyInvitedBy: auth.authenticatedUser!.id}))
 
     return {
