@@ -3,6 +3,7 @@ import './CivorisAppBar.css'
 import {useTranslation} from "react-i18next";
 import {useAuth} from "../useAuth.ts";
 import ValuedMenuState, {useMenuState} from "../states/ValuedMenuState.ts";
+import appConfig from "../../appConfig.ts";
 
 /**
  * Props for the CivorisAppBarProps
@@ -73,13 +74,11 @@ export default function CivorisAppBar(props: Readonly<CivorisAppBarProps>) {
 
     const menuState = useMenuState<void>()
 
-    // @ts-expect-error Needed for environment variables
-    const host = window.__APP_CONFIG__.VITE_API_URL!
     return (
         <Box
             className="civoris-app-bar"
         >
-            <HostInformation host={host}/>
+            <HostInformation host={appConfig.apiBaseUrl}/>
             <Logo onClick={props.onGoHome}/>
             <UserInformation
                 email={auth.authenticatedUser?.email ?? ''}
