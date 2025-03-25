@@ -1,0 +1,48 @@
+/**
+ * Type for the app config.
+ */
+type AppConfig = {
+
+    /**
+     * The base url of the api.
+     */
+    apiBaseUrl: string,
+
+    /**
+     * The link to be used for the "About Host" link in the footer.
+     */
+    aboutHostLink: string|null,
+
+    /**
+     * The link to be used for the "Legal" link in the footer
+     */
+    legalLink: string|null
+
+}
+
+const apiBaseUrl = "$API_BASE_URL"
+const aboutHostLink = "$ABOUT_HOST_LINK"
+const legalLink = "$LEGAL_LINK"
+
+/**
+ * Gets the passed string, or null if it is empty.
+ * @param str
+ */
+function get(str: string): string|null {
+    return str.length == 0 ? null : str
+}
+
+/**
+ * The created app config.
+ */
+const appConfig: AppConfig = {
+
+    apiBaseUrl: apiBaseUrl,
+
+    aboutHostLink: get(aboutHostLink),
+
+    legalLink: get(legalLink)
+
+}
+
+export default appConfig
