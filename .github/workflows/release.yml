@@ -16,10 +16,7 @@ jobs:
 
   #
   # Job to create the GitHub release package for this specific release.
-  # Will create a GitHub release tagged with the release name and include the following assets:
-  #
-  # - Source code archives (.zip and .tar.gz)
-  # - Fat Jar
+  # Will create a GitHub release tagged with the release name.
   #
   create-release:
     name: Create GitHub Release
@@ -28,17 +25,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build npm project
-        run: npm run build
-
-      - name: Zip dist folder
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -r dist.zip ./dist/
 
       - name: Create Tag
         uses: tvdias/github-tagger@v0.0.1
@@ -50,7 +36,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           repository: civoris/web-client
-          files: ./dist.zip
           body: <Create changelog>
           body_path: ./changelogs/${{ inputs.releaseVersion }}.md
           name: ${{ inputs.releaseVersion }}
