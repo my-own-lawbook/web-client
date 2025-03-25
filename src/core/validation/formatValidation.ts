@@ -79,6 +79,20 @@ export function validateUsername(username: string): string | null {
     else return "validation.format.username"
 }
 
+/**
+ * Validates a general name, e.g. for the title of a law-book.
+ *
+ * - Only alphanumerical values
+ * - Min length 4, max length 256
+ * @param string
+ */
+export function validateValidName(string: string): string | null {
+    const regex = /^[a-zA-Z0-9üÜäÄöÖß ]{1,256}$/
+
+    if (regex.test(string)) return null
+    else return "validation.format.name"
+}
+
 export function validateNotBlank(string: string, errorMsg: string | null = null): string | null {
     if (string.trim().length == 0)
         return errorMsg ?? "validation.format.non_empty.generic"

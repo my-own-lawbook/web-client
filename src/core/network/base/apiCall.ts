@@ -176,10 +176,8 @@ export default async function apiCall<T>(path: string, body?: unknown, method: s
             }
         })
 
-        console.debug(`Got axios response ${JSON.stringify(response)}`)
         return createResultFromResponse(response)
     } catch (e) {
-        console.debug(`Got axios error ${JSON.stringify(e)}`)
         return createResultFromException(e)
     }
 }

@@ -10,6 +10,8 @@ import {useNavigate} from "react-router-dom";
 import Book from "../core/model/Book.ts";
 import {useTranslation} from "react-i18next";
 import EmptyListNotice from "../core/components/EmptyListNotice.tsx";
+import CreateBookDialogContent from "./components/CreateBookDialogContent.tsx";
+import CivorisDialog from "../core/components/dialog/CivorisDialog.tsx";
 
 function BookSectionDisplay(
     props: Readonly<{
@@ -64,10 +66,13 @@ export default function HomeScreen() {
 
     const {
         invitationDialogState,
+        addBookDialogState,
         books,
         invitations,
         acceptInvitation,
-        denyInvitation
+        denyInvitation,
+        addBook,
+        refreshBooks
     } = useHomeScreen()
 
     const onBookClickAction = (book: Book) => navigate(`/law-books/${book.id}/`)
@@ -87,8 +92,7 @@ export default function HomeScreen() {
             <Box className="books-section">
                 <BookSectionDisplay
                     hasBooks={hasBooks}
-                    onAddBook={() => {
-                    }}
+                    onAddBook={() => addBookDialogState.open(null)}
                 />
                 <MaybeVisible
                     apiResult={books}
@@ -133,6 +137,14 @@ export default function HomeScreen() {
                 onAccept={acceptInvitation}
                 onDeny={denyInvitation}
             />
+
+            <CivorisDialog dialogState={addBookDialogState}>
+                <CreateBookDialogContent
+                    dialogState={addBookDialogState}
+                    onConfirm={addBook}
+                    refreshBooks={refreshBooks}
+                />
+            </CivorisDialog>
         </Box>
     )
 }

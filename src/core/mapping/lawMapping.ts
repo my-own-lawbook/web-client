@@ -14,7 +14,8 @@ export function mapBook(book: BookResponse): Book {
         id: book.id,
         name: book.name,
         description: book.description,
-        key: book.key
+        key: book.key,
+        isMemberOf: book.isMemberOf
     }
 }
 

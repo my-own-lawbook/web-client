@@ -327,7 +327,6 @@ const useBookDetailScreen = (): UseBookDetailScreen => {
 
     const bookApiResult = useApiCallPending(() => fetchBook(bookId))
     const membersApiResult = useApiCallPending(() => {
-        console.log(`Will call fetchMembersOfBook`)
         return fetchMembersOfBook(bookId)
     })
     const entriesApiResult = useApiCallPending(() => fetchEntriesInBook(bookId))
@@ -336,9 +335,9 @@ const useBookDetailScreen = (): UseBookDetailScreen => {
 
     const shouldDoLoading = !entriesApiResult.isFinishedSuccess
     const entriesIds = entriesApiResult.isFinishedSuccess ? entriesApiResult.data!.map(entry => entry.id) : undefined
-    const sectionsApiResult = useApiCallPending(() => fetchSectionsForEntries(entriesIds!), shouldDoLoading)
-
-    console.log(`Got member role api result ${JSON.stringify(membersApiResult)}`)
+    const sectionsApiResult = useApiCallPending(() => {
+        return fetchSectionsForEntries(entriesIds!)
+    }, shouldDoLoading, [JSON.stringify(entriesIds)])
 
     return {
         memberState: combinePendingApiResults3(membersApiResult, bookApiResult, memberRoleApiResult, createMemberState),
