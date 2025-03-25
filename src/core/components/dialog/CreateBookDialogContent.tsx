@@ -1,10 +1,10 @@
 import {useTranslation} from "react-i18next";
-import ValuedDialogState from "../../core/states/ValuedDialogState.ts";
+import ValuedDialogState from "../../states/ValuedDialogState.ts";
 import {Button, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
-import BookNameTextField from "../../core/components/form/BookNameTextField.tsx";
-import BookDescriptionTextField from "../../core/components/form/BookDescriptionTextField.tsx";
-import BookKeyTextField from "../../core/components/form/BookKeyTextField.tsx";
-import Book from "../../core/model/Book.ts";
+import BookNameTextField from "../form/BookNameTextField.tsx";
+import BookDescriptionTextField from "../form/BookDescriptionTextField.tsx";
+import BookKeyTextField from "../form/BookKeyTextField.tsx";
+import Book from "../../model/Book.ts";
 import useCreateBookDialog from "./useCreateBookDialog.ts";
 
 /**

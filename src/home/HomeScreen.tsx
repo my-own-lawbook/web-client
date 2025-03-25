@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import './HomeScreen.css'
 import SectionDisplay, {BaseSectionDisplay} from "./components/SectionDisplay.tsx";
 import useHomeScreen from "./useHomeScreen.ts";
@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import Book from "../core/model/Book.ts";
 import {useTranslation} from "react-i18next";
 import EmptyListNotice from "../core/components/EmptyListNotice.tsx";
-import CreateBookDialogContent from "./components/CreateBookDialogContent.tsx";
+import CreateBookDialogContent from "../core/components/dialog/CreateBookDialogContent.tsx";
 import CivorisDialog from "../core/components/dialog/CivorisDialog.tsx";
 
 function BookSectionDisplay(
@@ -106,6 +106,15 @@ export default function HomeScreen() {
                                 key={book.id}
                             />
                         )}
+                        {state.length != 0 ?
+                            <Button
+                                className={"new-book-button"}
+                                variant={'contained'}
+                                onClick={() => addBookDialogState.open(null)}
+                            >
+                                {t('home.sections.books.new_book_label')}
+                            </Button>
+                            : null}
                     </Box>}
                 />
 

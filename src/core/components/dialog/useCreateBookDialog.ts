@@ -1,10 +1,10 @@
-import Book from "../../core/model/Book.ts";
-import ValuedDialogState from "../../core/states/ValuedDialogState.ts";
-import {FormField} from "../../core/hooks/form/useFormField.ts";
-import {InputForm3, useForm3} from "../../core/hooks/form/useForm.ts";
-import {validateValidName} from "../../core/validation/formatValidation.ts";
-import {createBookApiCall, updateBookApiCall} from "../../core/network/lawCalls.ts";
-import {asConflictUniqueError} from "../../core/network/error/errorBody.ts";
+import Book from "../../model/Book.ts";
+import ValuedDialogState from "../../states/ValuedDialogState.ts";
+import {FormField} from "../../hooks/form/useFormField.ts";
+import {InputForm3, useForm3} from "../../hooks/form/useForm.ts";
+import {validateValidName} from "../../validation/formatValidation.ts";
+import {createBookApiCall, updateBookApiCall} from "../../network/lawCalls.ts";
+import {asConflictUniqueError} from "../../network/error/errorBody.ts";
 
 /**
  * Type of the useCreateBookDialog hook.

@@ -61,6 +61,7 @@ await i18next
                         sections: {
                             books: {
                                 title: "Your Law Books",
+                                new_book_label: "Create Book",
                                 description: {
                                     empty: {
                                         pre: "You don't seem to have access to any law-books at the moment. ",
@@ -411,6 +412,7 @@ await i18next
                         sections: {
                             books: {
                                 title: "Deine Gesetzesbücher",
+                                new_book_label: "Buch erstellen",
                                 description: {
                                     empty: {
                                         pre: "Du scheint noch keinen Zugriff auf ein Gesetzesbuch zu haben! ",
