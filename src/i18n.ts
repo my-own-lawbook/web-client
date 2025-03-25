@@ -229,8 +229,8 @@ await i18next
                                 placeholder: "user@domain.com"
                             },
                             email_token: {
-                                label: "Token",
-                                placeholder: "570c53cd-e102-4287-ae38-e22e0ee73f23"
+                                label: "One-Time-Password",
+                                placeholder: "869249"
                             },
                             expiration: {
                                 label: "Expiration date"
@@ -555,7 +555,7 @@ await i18next
                             },
                             email_token: {
                                 label: "Einmalpasswort",
-                                placeholder: "570c53cd-e102-4287-ae38-e22e0ee73f23"
+                                placeholder: "357532"
                             },
                             expiration: {
                                 label: "Ablaufdatum"

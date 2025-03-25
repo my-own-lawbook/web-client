@@ -13,7 +13,7 @@ export default function EmailVerifyTokenInput(props: CivorisTextFieldProps) {
             {...props}
             id="email-token"
             name="email-token"
-            type="text"
+            type="number"
 
             label={t('components.input.email_token.label')}
             placeholder={t('components.input.email_token.placeholder')}
@@ -22,7 +22,7 @@ export default function EmailVerifyTokenInput(props: CivorisTextFieldProps) {
 
             value={props.field.input.value}
             onChange={(e) => props.field.set(e.target.value)}
-            variant="outlined"
+            variant="filled"
 
             helperText={props.field.input.error ? t(props.field.input.error) : null}
             error={props.field.input.error != null}
