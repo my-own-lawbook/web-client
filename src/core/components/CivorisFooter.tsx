@@ -1,26 +1,5 @@
-import {Stack, Typography, useTheme} from "@mui/material";
-
-/**
- * The props for the CivorisFooter component
- */
-type CivorisFooterProps = {
-
-    /**
-     * Handles the user clicking on the legal info
-     */
-    onLegalClick: () => void,
-
-    /**
-     * Handles the user clicking on the about info
-     */
-    onAboutClick: () => void,
-
-    /**
-     * Handles the user clicking on the host info
-     */
-    onHostInfoClick: () => void
-
-}
+import {Link, Stack, useTheme} from "@mui/material";
+import appConfig from "../../appConfig.ts";
 
 /**
  * Component for a link in the footer
@@ -28,32 +7,36 @@ type CivorisFooterProps = {
  */
 function FooterLink(
     props: Readonly<{
-        onClick: () => void,
+        link: string | null,
         text: string
     }>
 ) {
     const theme = useTheme()
 
-    return (
-        <Typography
-            color={theme.palette.grey["500"]}
-
-            sx={{
-                cursor: "pointer"
-            }}
-
-            onClick={props.onClick}
-        >
-            {props.text}
-        </Typography>
-    )
+    if (props.link == null) {
+        return null
+    } else {
+        return (
+            <Link
+                href={props.link}
+                color={theme.palette.grey["500"]}
+                sx={{
+                    cursor: "pointer"
+                }}
+            >
+                {props.text}
+            </Link>
+        )
+    }
 }
+
+const GITHUB_LINK = "https://github.com/civoris/web-client"
 
 /**
  * The Footer used in all civoris screens
  * @params props The props
  */
-export default function CivorisFooter(props: Readonly<CivorisFooterProps>) {
+export default function CivorisFooter() {
     const theme = useTheme()
 
     return (
@@ -71,9 +54,10 @@ export default function CivorisFooter(props: Readonly<CivorisFooterProps>) {
                 borderTop: `${theme.palette.grey["300"]} 1px solid`
             }}
         >
-            <FooterLink text={"About Civoris"} onClick={props.onAboutClick}/>
-            <FooterLink text={"Legal notice"} onClick={props.onLegalClick}/>
-            <FooterLink text={"About host"} onClick={props.onHostInfoClick}/>
+
+            <FooterLink text={"About Civoris"} link={GITHUB_LINK}/>
+            <FooterLink text={"Legal notice"} link={appConfig.legalLink}/>
+            <FooterLink text={"About host"} link={appConfig.aboutHostLink}/>
         </Stack>
     )
 }
