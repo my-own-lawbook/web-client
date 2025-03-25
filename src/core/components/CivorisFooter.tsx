@@ -55,8 +55,8 @@ export default function CivorisFooter() {
         >
 
             <FooterLink text={"About Civoris"} link={GITHUB_LINK}/>
-            <FooterLink text={"Legal notice"} link={window.__APP_CONFIG__?.VITE_API_URL ?? ""}/>
-            <FooterLink text={"About host"} link={window.__APP_CONFIG__?.VITE_API_URL ?? ""}/>
+            <FooterLink text={"Legal notice"} link={window.appConfig.legalLink ?? ""}/>
+            <FooterLink text={"About host"} link={window.appConfig.aboutHostUrl ?? ""}/>
         </Stack>
     )
 }

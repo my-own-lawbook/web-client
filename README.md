@@ -19,9 +19,9 @@ This web app allows a user to connect to a (configurable) Civoris-backend and pe
 
 Independent of the deployment method, the app is configured via environment variables.
 
-| Name         | Description              | Default | Format      | Example              |
-|--------------|--------------------------|---------|-------------|----------------------|
-| VITE_API_URL | Endpoint for the backend | -       | String, URL | https://example.com/ |
+| Name       | Description              | Default | Format      | Example              |
+|------------|--------------------------|---------|-------------|----------------------|
+| apiBaseUrl | Endpoint for the backend | -       | String, URL | https://example.com/ |
 
 ### Container
 
@@ -35,5 +35,5 @@ services:
     ports:
       "<host_port>:80"
     environment:
-      VITE_API_URL: <api_url>
+      apiBaseUrl: <api_url>
 ```

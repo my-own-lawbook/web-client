@@ -1,3 +1,21 @@
-window.__APP_CONFIG__ = {
-    VITE_API_URL: "$API_BASE_URL"
+const apiBaseUrl = "$API_BASE_URL"
+
+let legalLink = "$LEGAL_LINK"
+let aboutHostLink = "$ABOUT_HOST_LINK"
+
+if(!apiBaseUrl) {
+    console.error("A non-empty value for 'API_BASE_URL' was expected, but not received. Report this to your administrator.")
+}
+
+if(!legalLink){
+    legalLink = null
+}
+if(!aboutHostLink){
+    aboutHostLink = null
+}
+
+window.appConfig = {
+    apiBaseUrl: apiBaseUrl,
+    legalLink: legalLink,
+    aboutHostLink: aboutHostLink
 };

@@ -151,8 +151,7 @@ function createResultFromException<T>(error: unknown): ApiResult<T> {
     }
 }
 
-// @ts-expect-error Needed for environment variables
-const baseUrl = window.__APP_CONFIG__.VITE_API_URL
+const baseUrl = window.appConfig.apiBaseUrl
 
 /**
  * Basic call to the civoris-rest-api

@@ -73,8 +73,7 @@ export default function CivorisAppBar(props: Readonly<CivorisAppBarProps>) {
 
     const menuState = useMenuState<void>()
 
-    // @ts-expect-error Needed for environment variables
-    const host = window.__APP_CONFIG__.VITE_API_URL!
+    const host = window.appConfig.apiBaseUrl
     return (
         <Box
             className="civoris-app-bar"
