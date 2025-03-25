@@ -44,8 +44,8 @@ export function LastNameInput(props: CivorisTextFieldProps) {
             name="last_name"
             type="text"
 
-            label={t('components.input.first_name.label')}
-            placeholder={t('components.input.first_name.placeholder')}
+            label={t('components.input.last_name.label')}
+            placeholder={t('components.input.last_name.placeholder')}
 
             value={props.field.input.value}
             onChange={(e) => props.field.set(e.target.value)}
