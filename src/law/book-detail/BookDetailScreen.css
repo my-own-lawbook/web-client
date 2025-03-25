@@ -21,6 +21,12 @@
     flex-direction: column;
 }
 
+.book-detail-header {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
 .book-detail-divider {
     margin-top: 12px;
     margin-bottom: 12px;

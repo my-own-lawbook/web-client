@@ -13,11 +13,6 @@ import useCreateBookDialog from "./useCreateBookDialog.ts";
 type CreateBookDialogContentProps = {
 
     /**
-     * The callback when the adding is confirmed
-     */
-    onConfirm: (name: string, key: string, description: string) => void,
-
-    /**
      * The dialog state with the book that should be updated, or null
      */
     dialogState: ValuedDialogState<Book | null>,

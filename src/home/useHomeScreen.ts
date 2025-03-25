@@ -4,7 +4,7 @@ import Invitation from "../core/model/Invitation.ts";
 import {useAuth} from "../core/useAuth.ts";
 import useApiCallPending from "../core/hooks/useApiCallPending.ts";
 import {acceptInvitationApiCall, denyInvitationApiCall, fetchInvitations} from "../core/network/invitationCalls.ts";
-import {createBookApiCall, fetchUserBooks} from "../core/network/lawCalls.ts";
+import {fetchUserBooks} from "../core/network/lawCalls.ts";
 import ValuedDialogState, {useDialogState} from "../core/states/ValuedDialogState.ts";
 import {useState} from "react";
 
@@ -32,20 +32,6 @@ type UseHomeScreen = {
      * The invitations
      */
     invitations: PendingApiResponse<Invitation[]>,
-
-    /**
-     * Creates a book.
-     *
-     * @param name The name of the book
-     * @param key The key of the book
-     * @param description The description of the book
-     */
-    addBook(name: string, key: string, description: string): Promise<void>,
-
-    /**
-     * Whether the add-book call is loading
-     */
-    addBookLoading: boolean,
 
     /**
      * Accepts a specific invitation
@@ -107,25 +93,6 @@ const deny = async (
 }
 
 /**
- * Adds a book.
- *
- * @param name The name of the book
- * @param key The key of the book
- * @param description The description of the book
- * @param setIsAddingBook Callback to set the loading state
- */
-const addBook = async (
-    name: string,
-    key: string,
-    description: string,
-    setIsAddingBook: (isLoading: boolean) => void
-): Promise<void> => {
-    setIsAddingBook(true)
-    await createBookApiCall(name, key, description)
-    setIsAddingBook(false)
-}
-
-/**
  * Home screen hook
  */
 const useHomeScreen = (): UseHomeScreen => {
@@ -134,7 +101,6 @@ const useHomeScreen = (): UseHomeScreen => {
     const invitationDialogState = useDialogState<Invitation>(false)
     const addBookDialogState = useDialogState<Book | null>(false)
 
-    const [isAddBookLoading, setIsAddBookLoading] = useState(false);
     const [isAcceptLoading, setIsAcceptLoading] = useState(false);
     const [isDenyLoading, setIsDenyLoading] = useState(false);
 
@@ -148,12 +114,6 @@ const useHomeScreen = (): UseHomeScreen => {
         addBookDialogState,
         books,
         invitations,
-        async addBook(name: string, key: string, description: string): Promise<void> {
-            await addBook(name, key, description, setIsAddBookLoading)
-            addBookDialogState.close()
-            books.refresh()
-        },
-        addBookLoading: isAddBookLoading,
         async acceptInvitation(id: number): Promise<void> {
             await accept(id, setIsAcceptLoading)
             invitationDialogState.close()

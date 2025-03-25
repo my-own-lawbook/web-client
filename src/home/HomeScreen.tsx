@@ -71,7 +71,6 @@ export default function HomeScreen() {
         invitations,
         acceptInvitation,
         denyInvitation,
-        addBook,
         refreshBooks
     } = useHomeScreen()
 
@@ -150,7 +149,6 @@ export default function HomeScreen() {
             <CivorisDialog dialogState={addBookDialogState}>
                 <CreateBookDialogContent
                     dialogState={addBookDialogState}
-                    onConfirm={addBook}
                     refreshBooks={refreshBooks}
                 />
             </CivorisDialog>

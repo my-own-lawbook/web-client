@@ -21,6 +21,7 @@ import {MemberRole} from "../../core/model/MemberRole.ts";
 import {useAuth} from "../../core/useAuth.ts";
 import Invitation from "../../core/model/Invitation.ts";
 import {fetchInvitations, revokeInvitationApiCall} from "../../core/network/invitationCalls.ts";
+import ValuedDialogState, {useDialogState} from "../../core/states/ValuedDialogState.ts";
 
 /**
  * The tabs in the book-detail screen
@@ -192,6 +193,11 @@ export function localizedNameForTab(tab: BookDetailTab): string {
 type UseBookDetailScreen = {
 
     /**
+     * Dialog state for the book edit dialog.
+     */
+    editBookDialogStage: ValuedDialogState<Book>
+
+    /**
      * The state for the members section
      */
     memberState: PendingApiResult<MemberState>,
@@ -339,7 +345,10 @@ const useBookDetailScreen = (): UseBookDetailScreen => {
         return fetchSectionsForEntries(entriesIds!)
     }, shouldDoLoading, [JSON.stringify(entriesIds)])
 
+    const bookEditDialogState = useDialogState<Book>(false)
+
     return {
+        editBookDialogStage: bookEditDialogState,
         memberState: combinePendingApiResults3(membersApiResult, bookApiResult, memberRoleApiResult, createMemberState),
         contentState: combinePendingApiResults4(bookApiResult, entriesApiResult, sectionsApiResult, memberRoleApiResult, createContentState),
         invitationsState: combinePendingApiResults3(memberRoleApiResult, invitationsApiResult, bookApiResult, createInvitationsState),

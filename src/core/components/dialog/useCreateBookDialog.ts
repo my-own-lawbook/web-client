@@ -86,15 +86,15 @@ const useCreateBookDialog = (
 ): UseCreateBookDialog => {
     const form = useForm3(
         {
-            initial: "",
+            initial: book?.name ?? "",
             validate: validateValidName
         },
         {
-            initial: "",
+            initial: book?.key ?? "",
             validate: validateValidName
         },
         {
-            initial: "",
+            initial: book?.description ?? "",
             validate: () => null
         }
     )

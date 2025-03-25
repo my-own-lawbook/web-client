@@ -1,4 +1,4 @@
-import {Box, Divider, Paper, Typography} from "@mui/material";
+import {Box, Divider, IconButton, Paper, Typography} from "@mui/material";
 import './BookDetailScreen.css'
 import useBookDetailScreen, {BookDetailTab, localizedNameForTab} from "./useBookDetailScreen.ts";
 import Book from "../../core/model/Book.ts";
@@ -12,6 +12,9 @@ import MaybeVisible from "../../core/components/MaybeVisible.tsx";
 import BookDetailInvitationSection from "./component/invitation-section/BookDetailInvitationSection.tsx";
 import BookDetailContentSection from "./component/content-section/BookDetailContentSection.tsx";
 import {useTranslation} from "react-i18next";
+import {EditOutlined} from "@mui/icons-material";
+import CivorisDialog from "../../core/components/dialog/CivorisDialog.tsx";
+import CreateBookDialogContent from "../../core/components/dialog/CreateBookDialogContent.tsx";
 
 /**
  * Content in the sidebar about the book
@@ -22,7 +25,8 @@ function BookDetailContent(
         book: Book,
         members: BookMember[],
         entries: Entry[],
-        sections: Map<number, Section[]>
+        sections: Map<number, Section[]>,
+        onEditClick: () => void
     }>
 ) {
     const {t} = useTranslation()
@@ -33,9 +37,16 @@ function BookDetailContent(
 
     return (
         <Box className="book-detail-wrapper">
-            <Typography variant={'h4'}>
-                {props.book.name}
-            </Typography>
+            <Box className="book-detail-header">
+                <Typography variant={'h4'}>
+                    {props.book.name}
+                </Typography>
+                <IconButton
+                    onClick={props.onEditClick}
+                >
+                    <EditOutlined/>
+                </IconButton>
+            </Box>
             <Typography variant={'body2'} fontWeight={'300'}>
                 {props.book.key} | {props.book.id}
             </Typography>
@@ -66,6 +77,7 @@ export default function BookDetailScreen() {
     const {t} = useTranslation()
 
     const {
+        editBookDialogStage,
         memberState,
         contentState,
         invitationsState,
@@ -89,6 +101,10 @@ export default function BookDetailScreen() {
                             members={state.members}
                             entries={state.entries}
                             sections={state.sections}
+                            onEditClick={() => {
+                                console.log("Inside onEditClick()")
+                                editBookDialogStage.open(state.book)
+                            }}
                         />
                     }
                 />
@@ -153,6 +169,15 @@ export default function BookDetailScreen() {
                     }
                 />
             </Box>
+
+            <CivorisDialog
+                dialogState={editBookDialogStage}
+            >
+                <CreateBookDialogContent
+                    dialogState={editBookDialogStage}
+                    refreshBooks={contentState.refreshSilent}
+                />
+            </CivorisDialog>
         </Box>
     )
 }
