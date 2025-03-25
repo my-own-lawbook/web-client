@@ -24,7 +24,12 @@ type EmptyListNoticeProps = {
     /**
      * Text after the clickable text
      */
-    postText: string
+    postText: string,
+
+    /**
+     * Whether the text should be start-aligned
+     */
+    textStartAlign?: boolean
 
 }
 
@@ -37,7 +42,7 @@ export default function EmptyListNotice(props: Readonly<EmptyListNoticeProps>) {
     return (
         <Typography
             variant={"body2"}
-            textAlign={"center"}
+            textAlign={props.textStartAlign ? "start" : "center"}
             color={theme.palette.grey["600"]}
             sx={{
                 mt: theme.spacing(2)

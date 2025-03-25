@@ -62,7 +62,11 @@ await i18next
                             books: {
                                 title: "Your Law Books",
                                 description: {
-                                    empty: "You don't seem to have access to any law-books at the moment. Create a book yourself or be invited to one!",
+                                    empty: {
+                                        pre: "You don't seem to have access to any law-books at the moment. ",
+                                        clickable: "Create a book yourself",
+                                        post: " or be invited to one!"
+                                    },
                                     existing: "Below is a list of all law-books that you have access to. To get a more detailed view of each book, click on it."
                                 }
                             },
@@ -387,7 +391,11 @@ await i18next
                             books: {
                                 title: "Deine Gesetzesbücher",
                                 description: {
-                                    empty: "Du scheint noch keinen Zugriff auf ein Gesetzesbuch zu haben! Erstelle eines, oder warte, bis jemand dich einlädt.",
+                                    empty: {
+                                        pre: "Du scheint noch keinen Zugriff auf ein Gesetzesbuch zu haben! ",
+                                        clickable: "Erstelle eines",
+                                        post: ", oder warte, bis jemand dich einlädt."
+                                    },
                                     existing: "Hier siehst du eine Liste aller Gesetzesbücher auf die du Zugriff hast. Um ausführlichere infos zu sehen, klicke auf die entsprechende Karte."
                                 }
                             },
