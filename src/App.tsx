@@ -10,6 +10,7 @@ import PageWrapper from "./core/routing/PageWrapper.tsx";
 import HomeScreen from "./home/HomeScreen.tsx";
 import BookDetailScreen from "./law/book-detail/BookDetailScreen.tsx";
 import i18next from "i18next";
+import DeepLinkHandler from "./core/routing/DeepLinkHandler.tsx";
 
 const theme = createTheme({
     components: {
@@ -33,6 +34,10 @@ function App() {
                     <AuthProvider>
                         <BrowserRouter>
                             <Routes>
+                                <Route
+                                    path={"/l/*"}
+                                    element={<DeepLinkHandler/>}
+                                />
                                 <Route
                                     path={`/law-books/:${BOOK_ID_NAME}/*`}
                                     element={
