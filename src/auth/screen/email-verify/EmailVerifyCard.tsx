@@ -3,15 +3,13 @@ import {Alert, Button, Stack, Typography} from "@mui/material";
 import EmailVerifyTokenInput from "../../../core/components/form/EmailVerifyTokenInput.tsx";
 import SuccessHandlerProps from "../props/SuccessHandlerProps.ts";
 import useEmailVerify from "./useEmailVerify.ts";
-import {useSearchParams} from "react-router-dom";
-import {Trans, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 /**
  * Component for entering the email verifying code
  */
 export default function EmailVerifyCard(props: Readonly<SuccessHandlerProps>) {
     const {t} = useTranslation()
-    const [params] = useSearchParams()
 
     const {state, onConfirm, onRequestNewEmail} = useEmailVerify(props.onSuccess)
 
@@ -20,11 +18,7 @@ export default function EmailVerifyCard(props: Readonly<SuccessHandlerProps>) {
             title={t('auth.email_verify.card.title')}
             infoText={
                 <Typography variant={"body2"}>
-                    <Trans i18nKey={"auth.email_verify.card.description"} values={{email: params.get('email')}}>
-                        _
-                        <Typography align={"center"} fontWeight={'600'}>_</Typography><br/>
-                        _
-                    </Trans>
+                    {t('auth.email_verify.card.description')}
                 </Typography>
             }
         >

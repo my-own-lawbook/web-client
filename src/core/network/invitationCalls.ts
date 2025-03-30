@@ -100,6 +100,22 @@ export async function fetchInvitations(query: FetchInvitationsQuery): Promise<Ap
 }
 
 /**
+ * Fetches a specific invitation
+ */
+export async function fetchInvitation(invitationId: number): Promise<ApiResult<Invitation>> {
+    const invitationResult = await authenticatedApiCall<InvitationResponse>(
+        `/book-invitations/${invitationId}/`,
+        undefined,
+        "get"
+    )
+
+    const mappedToArray = invitationResult.map(invitation => [invitation])
+
+    const populatedResponse = await populateInvitationResponse(mappedToArray, {})
+    return populatedResponse.map(array => array[0])
+}
+
+/**
  * Api call to accept an invitation
  * @param id The id of the invitation
  */

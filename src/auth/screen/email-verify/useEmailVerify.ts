@@ -1,10 +1,12 @@
 import {FormField} from "../../../core/hooks/form/useFormField.ts";
 import ErrorState from "../../../core/states/ErrorState.ts";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useForm1} from "../../../core/hooks/form/useForm.ts";
 import SuccessState from "../../../core/states/SuccessState.ts";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {requestEmailVerifyTokenApiCall, submitEmailVerifyTokenApiCall} from "../../../core/network/authCalls.ts";
+
+const SEARCH_OTP = "otp"
 
 /**
  * State of the email verify screen
@@ -76,11 +78,13 @@ const onSubmit = async (
     token: FormField<string>,
     setIsError: (isError: boolean) => void,
     setIsSuccess: (isError: boolean) => void,
-    onSuccess: () => void
+    onSuccess: () => void,
+    getToken?: () => string
 ) => {
     token.clearError()
 
-    const result = await submitEmailVerifyTokenApiCall(token.input.value)
+    const tokenValue = getToken ? getToken() : token.input.value
+    const result = await submitEmailVerifyTokenApiCall(tokenValue)
 
     setIsError(!result.isSuccess)
     if (!result.isSuccess)
@@ -107,6 +111,7 @@ const useEmailVerify = (
     const navigate = useNavigate()
 
     const [isError, setIsError] = useState(false)
+    const didInitialRequest = useRef<boolean>(false)
     const [isSuccess, setIsSuccess] = useState(false)
     const [canRequestEmail, setCanRequestEmail] = useState(true)
 
@@ -120,10 +125,15 @@ const useEmailVerify = (
     )
 
     useEffect(() => {
-        if (params.has("token")) {
-            token.set(params.get("token") ?? "")
+        if (params.has(SEARCH_OTP)) {
+            const initialOtp = params.get(SEARCH_OTP)!
+            if (!didInitialRequest.current) {
+                token.set(initialOtp)
+                onSubmit(token, setIsError, setIsSuccess, onSuccess, () => initialOtp)
+                didInitialRequest.current = true
+            }
         }
-    }, [navigate, params, token])
+    }, [navigate, params, token, onSuccess])
 
     return {
         state: {
