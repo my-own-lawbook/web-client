@@ -80,16 +80,27 @@ await i18next
                             }
                         }
                     },
+                    deep_link: {
+                        loading: {
+                            label: "You are being redirected…"
+                        },
+                        redirected: {
+                            label: "You have been redirected!"
+                        },
+                        error: {
+                            label: "An error occurred while redirecting you!"
+                        }
+                    },
                     book: {
                         tabs: {
                             content: {
-                                label: "Gesetze"
+                                label: "Laws"
                             },
                             members: {
-                                label: "Mitglieder"
+                                label: "Members"
                             },
                             invitations: {
-                                label: "Einladungen"
+                                label: "Invitations"
                             },
                         },
                         detail: {
@@ -429,6 +440,17 @@ await i18next
                                     existing: "Du wurdest in ein oder mehrere Gesetzesbücher eingeladen! Klicke auf die Kacheln um sie anzunehmen oder abzulehnen."
                                 }
                             }
+                        }
+                    },
+                    deep_link: {
+                        loading: {
+                            label: "Du wirst weitergeleitet…"
+                        },
+                        redirected: {
+                            label: "Du wurdest weitergeleitet!"
+                        },
+                        error: {
+                            label: "Ein Fehler ist während des Weiterleitens aufgetreten!"
                         }
                     },
                     book: {
