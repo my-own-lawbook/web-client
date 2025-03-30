@@ -343,7 +343,7 @@ const useBookDetailScreen = (): UseBookDetailScreen => {
     const entriesIds = entriesApiResult.isFinishedSuccess ? entriesApiResult.data!.map(entry => entry.id) : undefined
     const sectionsApiResult = useApiCallPending(() => {
         return fetchSectionsForEntries(entriesIds!)
-    }, shouldDoLoading, [JSON.stringify(entriesIds)])
+    }, {doLoading: shouldDoLoading, keys: [JSON.stringify(entriesIds)]})
 
     const bookEditDialogState = useDialogState<Book>(false)
 
