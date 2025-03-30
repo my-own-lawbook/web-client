@@ -44,7 +44,7 @@ await i18next
                             success: "Your email has been verified. You will soon be redirected.",
                             card: {
                                 title: "Verify your E-Mail",
-                                description: "An email that contains a token was sent to the following email address:<1>{{email}}</1></2>To validate your email address, please enter the code below.<4>If you did not receive an email, try requesting a new email.",
+                                description: "An email containing a verification link was sent to your email address!\nTo validate your email address, please click the link or enter the code below.\nIf you did not receive an email, try requesting a new email.",
                                 confirm_button_label: "Submit",
                                 request_new_button_label: "Request new email"
                             }
@@ -406,7 +406,7 @@ await i18next
                             success: "Deine Email Addresse wurde bestätigt. Du wirst gleich weitergeleitet.",
                             card: {
                                 title: "Email Addresse bestätigen",
-                                description: "Eine Email mit einem Einmalpasswort wurde an diese Email Addresse verschickt:<1>{{email}}</1></2>Um die Addresse zu bestätige, gebe diesen den Code aus der Email unten ein.<4>Falls du keine Email erhalten hast, versuche, eine neue zu beantragen.",
+                                description: "Eine Email mit einem Aktivierungslink wurde an deine Emailaddresse verschickt.\nUm dein Konto zu aktivieren, klicke auf den entsprechenden Link oder gebe das Einmalpassword aus der Email ein.\nFalls du keine Email erhalten hast, versuche, eine neue zu beantragen.",
                                 confirm_button_label: "Abschicken",
                                 request_new_button_label: "Email erneut senden"
                             }
